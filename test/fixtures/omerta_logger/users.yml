@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  gender: 1
+  rank: 1
+  honor_points: 1
+  level: 1
+  donor: false
+  first_seen: 2014-08-23 02:43:02
+  last_seen: 2014-08-23 02:43:02
+  family_role: 1
+  alive: false
+  akill: false
+  death_date: 2014-08-23 02:43:02
+  death_family: MyString
+  died_without_family: false
+  rip_topic: 1
+
+two:
+  name: MyString
+  gender: 1
+  rank: 1
+  honor_points: 1
+  level: 1
+  donor: false
+  first_seen: 2014-08-23 02:43:02
+  last_seen: 2014-08-23 02:43:02
+  family_role: 1
+  alive: false
+  akill: false
+  death_date: 2014-08-23 02:43:02
+  death_family: MyString
+  died_without_family: false
+  rip_topic: 1

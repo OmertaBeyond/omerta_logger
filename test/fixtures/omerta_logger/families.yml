@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ext_family_id: 1
+  name: MyString
+  worth: 1
+  rank: 1
+  users: 1
+  hq: 1
+  color: MyString
+  bank: 1
+  city: 1
+  first_seen: 2014-08-23 17:20:38
+  alive: false
+  death_date: 2014-08-23 17:20:38
+  rip_topic: 1
+
+two:
+  ext_family_id: 1
+  name: MyString
+  worth: 1
+  rank: 1
+  users: 1
+  hq: 1
+  color: MyString
+  bank: 1
+  city: 1
+  first_seen: 2014-08-23 17:20:38
+  alive: false
+  death_date: 2014-08-23 17:20:38
+  rip_topic: 1

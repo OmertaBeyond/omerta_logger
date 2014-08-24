@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  family: 
+  from: 2014-08-23 17:36:18
+  until: 2014-08-23 17:36:18
+  role: 1
+
+two:
+  user: 
+  family: 
+  from: 2014-08-23 17:36:18
+  until: 2014-08-23 17:36:18
+  role: 1

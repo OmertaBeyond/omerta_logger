@@ -1,0 +1,1 @@
+OmertaLogger::Engine.load_seed
