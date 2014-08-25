@@ -1,5 +1,6 @@
 # OmertaLogger
 [![Dependency Status](https://gemnasium.com/Baelor/omerta_logger.svg)](https://gemnasium.com/Baelor/omerta_logger)
+[![Code Climate](https://codeclimate.com/github/Baelor/omerta_logger/badges/gpa.svg)](https://codeclimate.com/github/Baelor/omerta_logger)
 
 Provides a logger for the MMORPG [Omerta](http://barafranca.com) as a mountable Rails engine.
 
