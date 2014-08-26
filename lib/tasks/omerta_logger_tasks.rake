@@ -22,4 +22,18 @@ namespace :version do
     domain = OmertaLogger::Domain.find_by_name!(args[:domain])
     domain.versions.create({ version:  args[:version], start: start_date })
   end
+
+  desc "ends a version"
+  task :end, [ :version, :domain, :end_date ] => [ :environment ] do |t, args|
+    args.with_defaults( :domain => "com",
+                        :end_date => Time.now )
+    end_date = args[:end_date]
+    if !end_date.is_a? Time
+      end_date = Time.parse(end_date)
+    end
+    domain = OmertaLogger::Domain.find_by_name!(args[:domain])
+    version = domain.versions.find_by_version!(args[:version])
+    version.end = end_date
+    version.save
+  end
 end
