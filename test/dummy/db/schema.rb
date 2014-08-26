@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824230106) do
+ActiveRecord::Schema.define(version: 20140826202524) do
 
   create_table "omerta_logger_domains", force: true do |t|
     t.string   "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140824230106) do
     t.integer  "rip_topic"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "online_time_seconds", default: 0
   end
 
   add_index "omerta_logger_users", ["family_id"], name: "index_omerta_logger_users_on_family_id"

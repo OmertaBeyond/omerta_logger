@@ -1,3 +1,5 @@
+require "time_difference"
+
 module OmertaLogger
   class User < ActiveRecord::Base
     include ActiveModel::Dirty
@@ -5,6 +7,15 @@ module OmertaLogger
     before_save do |u|
       self.save_rank_history if u.rank_changed?
       self.save_family_history if u.family_id_changed? || u.family_role_changed?
+      if u.last_seen_changed? && !u.last_seen_was.nil?
+        u.online_time_seconds += if TimeDifference.between(u.last_seen_was, u.last_seen).in_minutes < 10
+                                   TimeDifference.between(u.last_seen_was, u.last_seen).in_seconds
+                                 else
+                                   #i_have_no_idea_what_i'm_doing.jpg
+                                   5 * 60
+                                 end
+
+      end
     end
 
     has_many :user_rank_histories
@@ -26,6 +37,11 @@ module OmertaLogger
     def save_family_history
       self.user_family_histories.create({ family: self.family, family_role: self.family_role,
                                           date: self.last_seen })
+    end
+
+    def online_percentage
+      #TODO: use last logger sequence instead of Time.now
+      (online_time_seconds / TimeDifference.between(first_seen, Time.now).in_seconds) * 100
     end
   end
 end

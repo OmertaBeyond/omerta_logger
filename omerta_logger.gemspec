@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1.5"
   s.add_dependency "nokogiri", "~> 1.6.3.1"
   s.add_dependency "rabl", "~> 0.11.0"
+  s.add_dependency "time_difference", "~> 0.3.2"
 
   s.add_development_dependency "sqlite3"
 end
