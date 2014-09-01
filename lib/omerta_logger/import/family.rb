@@ -11,7 +11,7 @@ module OmertaLogger
           family.hq = xml_family.css("hq").text
           family.color = xml_family.css("color").text
           family.bank = xml_family.css("bank").text
-          family.city = xml_family.css("city").text.downcase.sub!(" ", "_")
+          family.city = enumify(xml_family.css("city").text)
           family.alive = true
           family.first_seen = @loader.generated if family.first_seen.nil?
           family.save

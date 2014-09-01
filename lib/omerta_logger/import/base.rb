@@ -7,6 +7,10 @@ module OmertaLogger
         @xml = @loader.xml
         @version = @loader.version
       end
+
+      def enumify(string)
+        string.downcase.sub(" ", "_").sub("-", "_")
+      end
     end
   end
 end
