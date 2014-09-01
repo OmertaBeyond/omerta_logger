@@ -41,7 +41,7 @@ module OmertaLogger
 
     def online_percentage
       #TODO: use last logger sequence instead of Time.now
-      (online_time_seconds / TimeDifference.between(first_seen, Time.now).in_seconds) * 100
+      (online_time_seconds / TimeDifference.between(death_date || first_seen, Time.now).in_seconds) * 100
     end
   end
 end
