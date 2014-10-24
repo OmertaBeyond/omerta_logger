@@ -27,7 +27,7 @@ module OmertaLogger
                  :pickpocket, :thief, :associate, :mobster, :soldier, :swindler,
                  :assassin, :local_chief, :chief, :bruglione, :capodecina,
                  :godfather, :first_lady ]
-    enum level: [ :player, :translation_crew ]
+    enum level: [ :player, :translation_crew, :user_group ]
     enum family_role: [ :member, :capo, :sotto, :consig, :don ]
 
     def save_rank_history
