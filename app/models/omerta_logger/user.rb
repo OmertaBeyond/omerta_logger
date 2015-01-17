@@ -7,19 +7,11 @@ module OmertaLogger
     before_save do |u|
       self.save_rank_history if u.rank_changed?
       self.save_family_history if u.family_id_changed? || u.family_role_changed?
-      if u.last_seen_changed? && !u.last_seen_was.nil?
-        u.online_time_seconds += if TimeDifference.between(u.last_seen_was, u.last_seen).in_minutes < 10
-                                   TimeDifference.between(u.last_seen_was, u.last_seen).in_seconds
-                                 else
-                                   #i_have_no_idea_what_i'm_doing.jpg
-                                   5 * 60
-                                 end
-
-      end
     end
 
     has_many :user_rank_histories
     has_many :user_family_histories
+    has_many :user_online_times
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]
@@ -40,8 +32,13 @@ module OmertaLogger
     end
 
     def online_percentage
-      #TODO: use last logger sequence instead of Time.now
-      (online_time_seconds / TimeDifference.between(first_seen, death_date || Time.now).in_seconds) * 100
+      version_time = TimeDifference.between(first_seen, death_date || version.last_update.generated || Time.now)
+      (online_time_seconds / version_time.in_seconds) * 100
+    end
+
+    # @return [OmertaLogger::UserOnlineTime]
+    def last_user_online_time
+      user_online_times.order("end DESC").first
     end
   end
 end

@@ -1,7 +1,21 @@
+require "time_difference"
+
 module OmertaLogger
   module Import
     class User < Base
       def import_users
+        online_time_increment = TimeDifference.between(
+            @previous_version_update.generated,
+            @version_update.generated
+        ).in_seconds
+        missed_cycles = false
+        if online_time_increment >= 10 * 60
+          # 10 minutes between updates probably means we missed a few cycles
+          # let's take an educated guess of 5 minutes
+          online_time_increment = 5 * 60
+          missed_cycles = true
+          Rails.logger.warn "online_time_incremet value of #{online_time_increment}s indicating missed cycles"
+        end
         @xml.css("users user").each do |xml_user|
           user = @version.users.find_or_create_by(ext_user_id: xml_user["id"])
           user.name = xml_user.css("name").first.text
@@ -12,6 +26,14 @@ module OmertaLogger
           user.donor = xml_user.css("donate").text.to_i != 0
           user.first_seen = @loader.generated if user.first_seen.nil?
           user.last_seen = @loader.generated
+          user.online_time_seconds += online_time_increment
+          last_online_time = user.last_user_online_time
+          if last_online_time.nil? || last_online_time.end != @previous_version_update.generated || missed_cycles
+            user.user_online_times.create(start: @previous_version_update.generated, end: @version_update.generated)
+          else
+            last_online_time.end = @version_update.generated
+            last_online_time.save
+          end
           xml_family = xml_user.css("family")
           if xml_family.length > 0
             user.family = @version.families.find_by({ name: xml_family.css("name").text, alive: true })
