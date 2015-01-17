@@ -36,7 +36,7 @@ module OmertaLogger
           end
         end
         @previous_version_update = @version.last_version_update
-        return if @previous_version_update.generated == @generated unless Rails.env.development?
+        return if !@previous_version_update.nil? && @previous_version_update.generated == @generated unless Rails.env.development?
         @version_update = @version.version_updates.create(generated: @generated)
         @previous_version_update = @version_update if @previous_version_update.nil?
         family_import = Family.new(self)
