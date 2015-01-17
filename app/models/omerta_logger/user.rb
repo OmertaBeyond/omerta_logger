@@ -32,6 +32,7 @@ module OmertaLogger
     end
 
     def online_percentage
+      return nil if first_seen.nil?
       version_time = TimeDifference.between(first_seen, death_date || version.last_version_update.generated || Time.now)
       (online_time_seconds / version_time.in_seconds) * 100
     end
