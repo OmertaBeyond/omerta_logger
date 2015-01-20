@@ -7,11 +7,13 @@ module OmertaLogger
     before_save do |u|
       self.save_rank_history if u.rank_changed?
       self.save_family_history if u.family_id_changed? || u.family_role_changed?
+      self.save_name_history if !u.new_record? && u.name_changed? && !u.name_was.nil?
     end
 
     has_many :user_rank_histories
     has_many :user_family_histories
     has_many :user_online_times
+    has_many :user_name_histories
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]
@@ -29,6 +31,10 @@ module OmertaLogger
     def save_family_history
       self.user_family_histories.create({ family: self.family, family_role: self.family_role,
                                           date: self.last_seen })
+    end
+
+    def save_name_history
+      self.user_name_histories.create({ name: name_was, date: last_seen})
     end
 
     def online_percentage
