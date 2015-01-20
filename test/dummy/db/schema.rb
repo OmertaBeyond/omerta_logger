@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120222320) do
+ActiveRecord::Schema.define(version: 20150120224210) do
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -85,6 +85,13 @@ ActiveRecord::Schema.define(version: 20150120222320) do
   end
 
   add_index "omerta_logger_user_rank_histories", ["user_id"], name: "index_omerta_logger_user_rank_histories_on_user_id"
+
+  create_table "omerta_logger_user_revives", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "user_id"
+  end
+
+  add_index "omerta_logger_user_revives", ["user_id"], name: "index_omerta_logger_user_revives_on_user_id"
 
   create_table "omerta_logger_users", force: :cascade do |t|
     t.integer  "ext_user_id"

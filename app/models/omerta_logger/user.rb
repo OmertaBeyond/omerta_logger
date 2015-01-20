@@ -8,12 +8,14 @@ module OmertaLogger
       self.save_rank_history if u.rank_changed?
       self.save_family_history if u.family_id_changed? || u.family_role_changed?
       self.save_name_history if !u.new_record? && u.name_changed? && !u.name_was.nil?
+      self.save_revive if u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
     end
 
     has_many :user_rank_histories
     has_many :user_family_histories
     has_many :user_online_times
     has_many :user_name_histories
+    has_many :user_revives
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]
@@ -35,6 +37,10 @@ module OmertaLogger
 
     def save_name_history
       self.user_name_histories.create({ name: name_was, date: last_seen})
+    end
+
+    def save_revive
+      self.user_revives.create({ date: last_seen })
     end
 
     def online_percentage
