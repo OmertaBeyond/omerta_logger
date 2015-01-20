@@ -36,7 +36,7 @@ module OmertaLogger
     end
 
     def save_name_history
-      self.user_name_histories.create({ name: name_was, date: last_seen})
+      self.user_name_histories.create({ name: name_was, date: last_seen })
     end
 
     def save_revive
