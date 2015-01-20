@@ -42,6 +42,7 @@ module OmertaLogger
         family_import = Family.new(self)
         if @families
           family_import.import_families
+          family_import.import_deaths
         end
 
         if @users
