@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users_total: 1
+  users_alive: 1
+  users_dead: 1
+  lackeys_working: 1
+  users_online_now: 1
+  users_online_today: 1
+  users_online_week: 1
+  registrations_today: 1
+  registrations_week: 1
+  bullets: 1
+  money_pocket: 1
+  money_bank: 1
+  money_familybank: 1
+  honorpoints: 1
+  car_attempts: 1
+  crime_attempts: 1
+  bustouts: 1
+  cars: 1
+
+two:
+  users_total: 1
+  users_alive: 1
+  users_dead: 1
+  lackeys_working: 1
+  users_online_now: 1
+  users_online_today: 1
+  users_online_week: 1
+  registrations_today: 1
+  registrations_week: 1
+  bullets: 1
+  money_pocket: 1
+  money_bank: 1
+  money_familybank: 1
+  honorpoints: 1
+  car_attempts: 1
+  crime_attempts: 1
+  bustouts: 1
+  cars: 1

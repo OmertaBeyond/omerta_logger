@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120224210) do
+ActiveRecord::Schema.define(version: 20150121022910) do
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -51,6 +51,31 @@ ActiveRecord::Schema.define(version: 20150120224210) do
   end
 
   add_index "omerta_logger_family_name_histories", ["family_id"], name: "index_omerta_logger_family_name_histories_on_family_id"
+
+  create_table "omerta_logger_game_statistics", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "version_id"
+    t.integer  "users_total"
+    t.integer  "users_alive"
+    t.integer  "users_dead"
+    t.integer  "lackeys_working"
+    t.integer  "users_online_now"
+    t.integer  "users_online_today"
+    t.integer  "users_online_week"
+    t.integer  "registrations_today"
+    t.integer  "registrations_week"
+    t.integer  "bullets",             limit: 8
+    t.integer  "money_pocket",        limit: 8
+    t.integer  "money_bank",          limit: 8
+    t.integer  "money_familybank",    limit: 8
+    t.integer  "honorpoints"
+    t.integer  "car_attempts"
+    t.integer  "crime_attempts"
+    t.integer  "bustouts"
+    t.integer  "cars"
+  end
+
+  add_index "omerta_logger_game_statistics", ["version_id"], name: "index_omerta_logger_game_statistics_on_version_id"
 
   create_table "omerta_logger_user_family_histories", force: :cascade do |t|
     t.integer  "user_id"

@@ -3,18 +3,20 @@ require "open-uri"
 require "omerta_logger/import/base"
 require "omerta_logger/import/family"
 require "omerta_logger/import/user"
+require "omerta_logger/import/game_statistic"
 require "time_difference"
 
 module OmertaLogger
   module Import
     class Loader
-      attr_accessor :domain, :users, :families, :xml, :generated
+      attr_accessor :domain, :users, :families, :game_statistics, :xml, :generated
       attr_accessor :version, :version_update, :previous_version_update
 
       def initialize(flags = {})
         @domain = flags.values_at(:domain)
         @users = flags.values_at(:users)
         @families = flags.values_at(:families)
+        @game_statistics = flags.values_at(:game_statistics)
       end
 
       def import
@@ -54,6 +56,12 @@ module OmertaLogger
         if @families
           family_import.import_tops
         end
+
+        if @game_statistics
+          game_statistic_import = GameStatistic.new(self)
+          game_statistic_import.import
+        end
+
         @version_update.duration = TimeDifference.between(import_start, Time.now).in_seconds
         @version_update.save
         Rails.logger.info "imported update for #{domain.name} in #{@version_update.duration}s"
