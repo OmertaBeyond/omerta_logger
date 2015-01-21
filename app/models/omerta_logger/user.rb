@@ -16,6 +16,8 @@ module OmertaLogger
     has_many :user_online_times
     has_many :user_name_histories
     has_many :user_revives
+    has_many :hitlistings, :class_name => "Hitlist", :foreign_key => "target_id"
+    has_many :added_hitlistings, :class_name => "Hitlist", :foreign_key => "hitlister_id"
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]

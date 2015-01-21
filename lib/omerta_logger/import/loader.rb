@@ -4,12 +4,13 @@ require "omerta_logger/import/base"
 require "omerta_logger/import/family"
 require "omerta_logger/import/user"
 require "omerta_logger/import/game_statistic"
+require "omerta_logger/import/hitlist"
 require "time_difference"
 
 module OmertaLogger
   module Import
     class Loader
-      attr_accessor :domain, :users, :families, :game_statistics, :xml, :generated
+      attr_accessor :domain, :users, :families, :game_statistics, :hitlist, :xml, :generated
       attr_accessor :version, :version_update, :previous_version_update
 
       def initialize(flags = {})
@@ -17,6 +18,7 @@ module OmertaLogger
         @users = flags.values_at(:users)
         @families = flags.values_at(:families)
         @game_statistics = flags.values_at(:game_statistics)
+        @hitlist = flags.values_at(:hitlist)
       end
 
       def import
@@ -60,6 +62,11 @@ module OmertaLogger
         if @game_statistics
           game_statistic_import = GameStatistic.new(self)
           game_statistic_import.import
+        end
+
+        if @hitlist
+          hitlist_import = Hitlist.new(self)
+          hitlist_import.import
         end
 
         @version_update.duration = TimeDifference.between(import_start, Time.now).in_seconds

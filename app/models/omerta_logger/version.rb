@@ -4,6 +4,7 @@ module OmertaLogger
     has_many :families
     has_many :version_updates
     has_many :game_statistics
+    has_many :hitlists
     belongs_to :domain
 
     def self.current

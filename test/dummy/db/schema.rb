@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121022910) do
+ActiveRecord::Schema.define(version: 20150121232340) do
 
   create_table "omerta_logger_domains", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "api_url",    limit: 255
+    t.string   "name"
+    t.string   "api_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20150121022910) do
   create_table "omerta_logger_families", force: :cascade do |t|
     t.integer  "ext_family_id"
     t.integer  "version_id"
-    t.string   "name",          limit: 255
+    t.string   "name"
     t.integer  "worth"
     t.integer  "rank"
     t.integer  "user_count"
     t.integer  "hq"
-    t.string   "color",         limit: 255
+    t.string   "color"
     t.integer  "bank"
     t.integer  "city"
     t.integer  "don_id"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 20150121022910) do
 
   add_index "omerta_logger_game_statistics", ["version_id"], name: "index_omerta_logger_game_statistics_on_version_id"
 
+  create_table "omerta_logger_hitlists", force: :cascade do |t|
+    t.integer  "ext_hitlist_id"
+    t.integer  "version_id"
+    t.datetime "date"
+    t.integer  "amount"
+    t.integer  "target_id"
+    t.integer  "hitlister_id"
+  end
+
   create_table "omerta_logger_user_family_histories", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "family_id"
@@ -121,7 +130,7 @@ ActiveRecord::Schema.define(version: 20150121022910) do
   create_table "omerta_logger_users", force: :cascade do |t|
     t.integer  "ext_user_id"
     t.integer  "version_id"
-    t.string   "name",                limit: 255
+    t.string   "name"
     t.integer  "gender"
     t.integer  "rank"
     t.integer  "honor_points"
@@ -134,12 +143,12 @@ ActiveRecord::Schema.define(version: 20150121022910) do
     t.boolean  "alive"
     t.boolean  "akill"
     t.datetime "death_date"
-    t.string   "death_family",        limit: 255
+    t.string   "death_family"
     t.boolean  "died_without_family"
     t.integer  "rip_topic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "online_time_seconds",             default: 0
+    t.integer  "online_time_seconds", default: 0
   end
 
   add_index "omerta_logger_users", ["family_id"], name: "index_omerta_logger_users_on_family_id"
@@ -154,7 +163,7 @@ ActiveRecord::Schema.define(version: 20150121022910) do
   add_index "omerta_logger_version_updates", ["version_id"], name: "index_omerta_logger_version_updates_on_version_id"
 
   create_table "omerta_logger_versions", force: :cascade do |t|
-    t.string   "version",    limit: 255
+    t.string   "version"
     t.integer  "domain_id"
     t.datetime "start"
     t.datetime "end"
