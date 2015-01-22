@@ -1,15 +1,15 @@
 module OmertaLogger
   module Import
     class Family < Base
-      XML_MAPPING = { :name => "name", :worth => "worth", :rank => "rank", :user_count => "users", :hq => "hq",
-                      :color => "color", :bank => "bank" }
+      XML_MAPPING = { name: "name", worth: "worth", rank: "rank", user_count: "users", hq: "hq",
+                      color: "color", bank: "bank" }
 
       def import_families
         @xml.css("families family").each do |xml_family|
           family = @version.families.find_or_create_by(ext_family_id: xml_family["id"])
-          newfam = { :city       => enumify(xml_family.css("city").text),
-                     :alive      => true,
-                     :first_seen => (@loader.generated if family.first_seen.nil?) }
+          newfam = { city: enumify(xml_family.css("city").text),
+                     alive: true,
+                     first_seen: (@loader.generated if family.first_seen.nil?) }
           XML_MAPPING.each do |k, v|
             newfam[k] = xml_family.css(v).text
           end

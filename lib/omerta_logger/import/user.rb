@@ -39,15 +39,15 @@ module OmertaLogger
       def import_users
         @xml.css("users user").each do |xml_user|
           user = @version.users.find_or_create_by(ext_user_id: xml_user["id"])
-          user.assign_attributes(:name         => xml_user.css("name").first.text,
-                                 :gender       => enumify(xml_user.css("gender").text),
-                                 :rank         => enumify(xml_user.css("rank").text),
-                                 :honor_points => xml_user.css("hps").text,
-                                 :level        => enumify(xml_user.css("level").text),
-                                 :donor        => xml_user.css("donate").text.to_i != 0,
-                                 :first_seen   => (@loader.generated if user.first_seen.nil?),
-                                 :last_seen    => @loader.generated,
-                                 :alive        => true)
+          user.assign_attributes(name: xml_user.css("name").first.text,
+                                 gender: enumify(xml_user.css("gender").text),
+                                 rank: enumify(xml_user.css("rank").text),
+                                 honor_points: xml_user.css("hps").text,
+                                 level: enumify(xml_user.css("level").text),
+                                 donor: xml_user.css("donate").text.to_i != 0,
+                                 first_seen: (@loader.generated if user.first_seen.nil?),
+                                 last_seen: @loader.generated,
+                                 alive: true)
           update_online_time(user)
           update_family(user, xml_user.css("family"))
           user.save
