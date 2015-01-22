@@ -27,7 +27,7 @@ module OmertaLogger
         end
       end
 
-      def set_version(domain)
+      def find_or_create_version(domain)
         xml_version = @xml.css("version").first
         if xml_version.nil?
           @version = domain.versions.current
@@ -52,7 +52,7 @@ module OmertaLogger
         domain = Domain.find_by_name!(@domain)
         load_xml(domain.api_url)
         @generated = Time.at(@xml.css("generated").first.text.to_i)
-        set_version(domain)
+        find_or_create_version(domain)
 
         @previous_version_update = @version.last_version_update
         return if !@previous_version_update.nil? && @previous_version_update.generated == @generated unless Rails.env.development?
