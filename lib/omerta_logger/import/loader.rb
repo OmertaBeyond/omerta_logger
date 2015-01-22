@@ -29,15 +29,11 @@ module OmertaLogger
 
       def find_or_create_version(domain)
         xml_version = @xml.css('version').first
-        if xml_version.nil?
-          @version = domain.versions.current
-        else
-          begin
-            @version = domain.versions.find_by!(version: xml_version.text)
-          rescue ActiveRecord::RecordNotFound
-            @version = domain.versions.create(version: xml_version.text, start: @generated)
-            Rails.logger.info "created new version #{xml_version.text} on #{domain.name}"
-          end
+        begin
+          @version = domain.versions.find_by!(version: xml_version.text)
+        rescue ActiveRecord::RecordNotFound
+          @version = domain.versions.create(version: xml_version.text, start: @generated)
+          Rails.logger.info "created new version #{xml_version.text} on #{domain.name}"
         end
       end
 
