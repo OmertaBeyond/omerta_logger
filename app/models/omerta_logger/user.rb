@@ -5,10 +5,10 @@ module OmertaLogger
     include ActiveModel::Dirty
 
     before_save do |u|
-      self.save_rank_history if u.rank_changed?
-      self.save_family_history if u.family_id_changed? || u.family_role_changed?
-      self.save_name_history if !u.new_record? && u.name_changed? && !u.name_was.nil?
-      self.save_revive if u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
+      save_rank_history if u.rank_changed?
+      save_family_history if u.family_id_changed? || u.family_role_changed?
+      save_name_history if !u.new_record? && u.name_changed? && !u.name_was.nil?
+      save_revive if u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
     end
 
     has_many :user_rank_histories
@@ -29,20 +29,20 @@ module OmertaLogger
     enum family_role: [ :member, :capo, :sotto, :consig, :don ]
 
     def save_rank_history
-      self.user_rank_histories.create(rank: self.rank, date: self.last_seen)
+      user_rank_histories.create(rank: rank, date: last_seen)
     end
 
     def save_family_history
-      self.user_family_histories.create(family: self.family, family_role: self.family_role,
-                                        date: self.last_seen)
+      user_family_histories.create(family: family, family_role: family_role,
+                                   date: last_seen)
     end
 
     def save_name_history
-      self.user_name_histories.create(name: name_was, date: last_seen)
+      user_name_histories.create(name: name_was, date: last_seen)
     end
 
     def save_revive
-      self.user_revives.create(date: last_seen)
+      user_revives.create(date: last_seen)
     end
 
     def online_percentage

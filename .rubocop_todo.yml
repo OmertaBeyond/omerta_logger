@@ -27,11 +27,6 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 16
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Enabled: false
-
 # Offense count: 14
 # Cop supports --auto-correct.
 Style/SpaceInsideBrackets:
