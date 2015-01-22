@@ -1,4 +1,4 @@
-require "time_difference"
+require 'time_difference'
 
 module OmertaLogger
   class User < ActiveRecord::Base
@@ -16,8 +16,8 @@ module OmertaLogger
     has_many :user_online_times
     has_many :user_name_histories
     has_many :user_revives
-    has_many :hitlistings, class_name: "Hitlist", foreign_key: "target_id"
-    has_many :added_hitlistings, class_name: "Hitlist", foreign_key: "hitlister_id"
+    has_many :hitlistings, class_name: 'Hitlist', foreign_key: 'target_id'
+    has_many :added_hitlistings, class_name: 'Hitlist', foreign_key: 'hitlister_id'
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]
@@ -53,7 +53,7 @@ module OmertaLogger
 
     # @return [OmertaLogger::UserOnlineTime]
     def last_user_online_time
-      user_online_times.order("end DESC").first
+      user_online_times.order('end DESC').first
     end
   end
 end

@@ -1,11 +1,11 @@
-require "nokogiri"
-require "open-uri"
-require "omerta_logger/import/base"
-require "omerta_logger/import/family"
-require "omerta_logger/import/user"
-require "omerta_logger/import/game_statistic"
-require "omerta_logger/import/hitlist"
-require "time_difference"
+require 'nokogiri'
+require 'open-uri'
+require 'omerta_logger/import/base'
+require 'omerta_logger/import/family'
+require 'omerta_logger/import/user'
+require 'omerta_logger/import/game_statistic'
+require 'omerta_logger/import/hitlist'
+require 'time_difference'
 
 module OmertaLogger
   module Import
@@ -28,7 +28,7 @@ module OmertaLogger
       end
 
       def find_or_create_version(domain)
-        xml_version = @xml.css("version").first
+        xml_version = @xml.css('version').first
         if xml_version.nil?
           @version = domain.versions.current
         else
@@ -51,7 +51,7 @@ module OmertaLogger
         import_start = Time.now
         domain = Domain.find_by_name!(@domain)
         load_xml(domain.api_url)
-        @generated = Time.at(@xml.css("generated").first.text.to_i)
+        @generated = Time.at(@xml.css('generated').first.text.to_i)
         find_or_create_version(domain)
 
         @previous_version_update = @version.last_version_update

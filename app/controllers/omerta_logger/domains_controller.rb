@@ -1,4 +1,4 @@
-require_dependency "omerta_logger/application_controller"
+require_dependency 'omerta_logger/application_controller'
 
 module OmertaLogger
   class DomainsController < ApplicationController

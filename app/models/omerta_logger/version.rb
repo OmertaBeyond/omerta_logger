@@ -8,12 +8,12 @@ module OmertaLogger
     belongs_to :domain
 
     def self.current
-      where("start <= ? AND (end >= ? OR end IS NULL)", Time.now, Time.now).first!
+      where('start <= ? AND (end >= ? OR end IS NULL)', Time.now, Time.now).first!
     end
 
     # @return [OmertaLogger::VersionUpdate]
     def last_version_update
-      version_updates.order("generated DESC").first
+      version_updates.order('generated DESC').first
     end
   end
 end

@@ -1,4 +1,4 @@
-require "omerta_logger/engine"
+require 'omerta_logger/engine'
 
 module OmertaLogger
 end
