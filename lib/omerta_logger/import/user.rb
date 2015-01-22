@@ -3,22 +3,26 @@ require 'time_difference'
 module OmertaLogger
   module Import
     class User < Base
-      def update_online_time(user)
-        online_time_increment = TimeDifference.between(
+      # rubocop:disable Style/GuardClause
+      def calculate_online_time_increment
+        @online_time_increment = TimeDifference.between(
             @previous_version_update.generated,
             @version_update.generated
         ).in_seconds
-        missed_cycles         = false
-        if online_time_increment >= 10 * 60
+        @missed_cycles         = false
+        if @online_time_increment >= 10 * 60
           # 10 minutes between updates probably means we missed a few cycles
           # let's take an educated guess of 5 minutes
-          online_time_increment = 5 * 60
-          missed_cycles         = true
+          @online_time_increment = 5 * 60
+          @missed_cycles         = true
           Rails.logger.warn "online_time_incremet value of #{online_time_increment}s indicating missed cycles"
         end
-        user.online_time_seconds += online_time_increment
+      end
+
+      def update_online_time(user)
+        user.online_time_seconds += @online_time_increment
         last_online_time         = user.last_user_online_time
-        if last_online_time.nil? || last_online_time.end != @previous_version_update.generated || missed_cycles
+        if last_online_time.nil? || last_online_time.end != @previous_version_update.generated || @missed_cycles
           user.user_online_times.create(start: @previous_version_update.generated, end: @version_update.generated)
         else
           last_online_time.end = @version_update.generated
@@ -37,6 +41,7 @@ module OmertaLogger
       end
 
       def import_users
+        calculate_online_time_increment
         @xml.css('users user').each do |xml_user|
           user = @version.users.find_or_create_by(ext_user_id: xml_user['id'])
           user.assign_attributes(name: xml_user.css('name').first.text,

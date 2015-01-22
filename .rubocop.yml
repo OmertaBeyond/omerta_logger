@@ -15,3 +15,5 @@ Metrics/AbcSize:
   Max: 35
 Style/SpaceInsideBrackets:
   Enabled: false # spaces make enums in models more readable
+Metrics/MethodLength:
+  Max: 20
