@@ -29,20 +29,20 @@ module OmertaLogger
     enum family_role: [ :member, :capo, :sotto, :consig, :don ]
 
     def save_rank_history
-      self.user_rank_histories.create({ rank: self.rank, date: self.last_seen })
+      self.user_rank_histories.create(rank: self.rank, date: self.last_seen)
     end
 
     def save_family_history
-      self.user_family_histories.create({ family: self.family, family_role: self.family_role,
-                                          date: self.last_seen })
+      self.user_family_histories.create(family: self.family, family_role: self.family_role,
+                                        date: self.last_seen)
     end
 
     def save_name_history
-      self.user_name_histories.create({ name: name_was, date: last_seen })
+      self.user_name_histories.create(name: name_was, date: last_seen)
     end
 
     def save_revive
-      self.user_revives.create({ date: last_seen })
+      self.user_revives.create(date: last_seen)
     end
 
     def online_percentage

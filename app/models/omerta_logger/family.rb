@@ -16,7 +16,7 @@ module OmertaLogger
     end
 
     def save_name_history
-      self.family_name_histories.create({ name: name_was, date: version.last_version_update.generated })
+      self.family_name_histories.create(name: name_was, date: version.last_version_update.generated)
     end
   end
 end
