@@ -11,3 +11,5 @@ AllCops:
     - 'test/dummy/config/**/*'
     - 'test/dummy/script/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
+Metrics/AbcSize:
+  Max: 35
