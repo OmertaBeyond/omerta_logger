@@ -71,9 +71,7 @@ module OmertaLogger
           user_import.import_deaths
         end
 
-        if @families
-          family_import.import_tops
-        end
+        family_import.import_tops if @families
 
         if @game_statistics
           game_statistic_import = GameStatistic.new(self)

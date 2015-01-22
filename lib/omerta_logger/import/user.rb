@@ -76,9 +76,7 @@ module OmertaLogger
 
           update_death_family(user, xml_user)
 
-          if xml_user.css("riptopic").text == "0"
-            user.akill = true
-          end
+          user.akill = true if xml_user.css("riptopic").text == "0"
 
           user.alive      = false
           user.rip_topic  = xml_user.css("riptopic").text
