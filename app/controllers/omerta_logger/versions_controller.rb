@@ -2,7 +2,7 @@ require_dependency 'omerta_logger/application_controller'
 
 module OmertaLogger
   class VersionsController < ApplicationController
-    before_filter :set_domain
+    before_action :set_domain
 
     def set_domain
       @domain = Domain.find_by!(name: params[:domain_domain])
