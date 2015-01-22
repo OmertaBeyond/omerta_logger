@@ -47,18 +47,7 @@ module OmertaLogger
         Rails.logger.info "imported update for #{@version.domain.name} in #{@version_update.duration}s"
       end
 
-      def import
-        import_start = Time.now
-        domain = Domain.find_by_name!(@domain)
-        load_xml(domain.api_url)
-        @generated = Time.at(@xml.css('generated').first.text.to_i)
-        find_or_create_version(domain)
-
-        @previous_version_update = @version.last_version_update
-        return if !@previous_version_update.nil? && @previous_version_update.generated == @generated unless Rails.env.development?
-        @version_update = @version.version_updates.create(generated: @generated)
-        @previous_version_update = @version_update if @previous_version_update.nil?
-
+      def exec_import
         family_import = Family.new(self)
         if @families
           family_import.import_families
@@ -73,15 +62,24 @@ module OmertaLogger
 
         family_import.import_tops if @families
 
-        if @game_statistics
-          game_statistic_import = GameStatistic.new(self)
-          game_statistic_import.import
-        end
+        GameStatistic.new(self).import if @game_statistics
 
-        if @hitlist
-          hitlist_import = Hitlist.new(self)
-          hitlist_import.import
-        end
+        Hitlist.new(self).import if @hitlist
+      end
+
+      def import
+        import_start = Time.now
+        domain = Domain.find_by_name!(@domain)
+        load_xml(domain.api_url)
+        @generated = Time.at(@xml.css('generated').first.text.to_i)
+        find_or_create_version(domain)
+
+        @previous_version_update = @version.last_version_update
+        return if !@previous_version_update.nil? && @previous_version_update.generated == @generated unless Rails.env.development?
+        @version_update = @version.version_updates.create(generated: @generated)
+        @previous_version_update = @version_update if @previous_version_update.nil?
+
+        exec_import
 
         save_version_update(import_start)
       end
