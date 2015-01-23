@@ -3,3 +3,11 @@ rvm:
  - 2.2.0
 script:
   - bundle exec rubocop -R
+notifications:
+  irc:
+    channels:
+      - "irc.barafranca.com#dev"
+    template:
+      - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+      - "Build details : %{build_url}"
+    skip_join: true
