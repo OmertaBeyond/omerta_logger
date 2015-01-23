@@ -60,11 +60,11 @@ Finally, you can start your first import with `rake import` to verify everything
 There are various ways to use this engine:
  * If you're working on a rails app, you can use or extend the models this project provides. 
  * The engine also includes a read-only REST API. To enable it, edit `config/routes.rb` and replace it with the following lines:
-  ```ruby
-  Rails.application.routes.draw do
-    mount OmertaLogger::Engine => "/"
-  end
-  ```
+```ruby
+Rails.application.routes.draw do
+  mount OmertaLogger::Engine => "/"
+end
+```
   This will mount the engine at the root path (`/`, of course you may use any path).
   OmertaBeyond provides a hosted version of this API at https://api.omertabeyond.net/
  * Alternatively, it's possible to access the database tables used by this project directly from within any other project. However, the database schema might change in the future, so make sure you check whether you're affected by any migrations before upgrading this engine.
