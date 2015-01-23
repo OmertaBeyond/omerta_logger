@@ -1,4 +1,5 @@
 # OmertaLogger
+[![Build Status](https://travis-ci.org/Baelor/omerta_logger.svg?branch=master)](https://travis-ci.org/Baelor/omerta_logger)
 [![Dependency Status](https://gemnasium.com/Baelor/omerta_logger.svg)](https://gemnasium.com/Baelor/omerta_logger)
 [![Code Climate](https://codeclimate.com/github/Baelor/omerta_logger/badges/gpa.svg)](https://codeclimate.com/github/Baelor/omerta_logger)
 
