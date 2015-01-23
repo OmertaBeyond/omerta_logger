@@ -40,8 +40,6 @@ all supported entities from .com.
  * `rake import['nl']` will import all entities for barafranca.nl
  * `rake import['dm',true,true,false,false]` will import User and Family entities for omerta.dm, but skip game statistics and hitlistings
 
-To use this engine, you have to mount it from within a rails app.
-
 ### Production
 For production usage, you should mount this app as an engine in your rails app. If you don't have an existing rails app, run `rails new foobar`, where `foobar` is your app name. Make sure you are using rails 4.2.0. Rails will create a new folder `foobar`. Next, add the following line to your Gemfile:
 
