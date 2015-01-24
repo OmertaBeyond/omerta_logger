@@ -16,3 +16,7 @@ end
 child :user_rank_histories => :promotions do
   extends "omerta_logger/user_rank_histories/show"
 end
+
+child :user_revives => :revives do
+  extends "omerta_logger/user_revives/show"
+end
