@@ -15,7 +15,7 @@ module OmertaLogger
           # let's take an educated guess of 5 minutes
           @online_time_increment = 5 * 60
           @missed_cycles         = true
-          Rails.logger.warn "online_time_incremet value of #{online_time_increment}s indicating missed cycles"
+          Rails.logger.warn "online_time_incremet value of #{@online_time_increment}s indicating missed cycles"
         end
       end
 
