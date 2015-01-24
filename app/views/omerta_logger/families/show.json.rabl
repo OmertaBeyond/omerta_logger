@@ -6,3 +6,7 @@ attributes :name, :worth, :rank, :user_count, :hq, :color, :bank,
 child :users => :users do
   extends "omerta_logger/users/show", :locals => { :hide_family => true }
 end unless locals[:hide_users]
+
+child :family_name_histories => :name_changes do
+  extends "omerta_logger/family_name_histories/show"
+end
