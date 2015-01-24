@@ -12,3 +12,7 @@ end unless locals[:hide_family]
 child :user_name_histories => :name_changes do
   extends "omerta_logger/user_name_histories/show"
 end
+
+child :user_rank_histories => :promotions do
+  extends "omerta_logger/user_rank_histories/show"
+end
