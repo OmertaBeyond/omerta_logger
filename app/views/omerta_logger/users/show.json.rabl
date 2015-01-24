@@ -8,3 +8,7 @@ attributes :name, :gender, :rank, :honor_points,:level, :donor,
 node(:family) do |user|
   partial "omerta_logger/families/show", :object => user.family, :locals => { :hide_users => true }
 end unless locals[:hide_family]
+
+child :user_name_histories => :name_changes do
+  extends "omerta_logger/user_name_histories/show"
+end
