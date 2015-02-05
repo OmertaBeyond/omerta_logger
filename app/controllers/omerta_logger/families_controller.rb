@@ -5,6 +5,13 @@ module OmertaLogger
     before_action :set_domain
     before_action :set_version
 
+    def with_default_includes(finder)
+      finder.includes(
+          { users: [ :version, :user_name_histories, :user_rank_histories, :user_revives ] },
+          :family_name_histories
+      )
+    end
+
     def set_domain
       @domain = Domain.find_by!(name: params[:domain_domain])
     end
@@ -14,14 +21,14 @@ module OmertaLogger
     end
 
     def index
-      @families = @version.families.all
+      @families = with_default_includes(@version.families).all
     end
 
     def show
       if params[:id_or_name].to_i.zero?
-        @family = @version.families.find_by!(name: params[:id_or_name])
+        @family = with_default_includes(@version.families).find_by!(name: params[:id_or_name])
       else
-        @family = @version.families.find_by!(ext_family_id: params[:id_or_name])
+        @family = with_default_includes(@version.families).find_by!(ext_family_id: params[:id_or_name])
       end
     end
   end
