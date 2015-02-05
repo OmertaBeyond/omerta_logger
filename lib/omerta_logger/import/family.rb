@@ -9,7 +9,7 @@ module OmertaLogger
           family = @version.families.find_or_create_by(ext_family_id: xml_family['id'])
           newfam = { city: enumify(xml_family.css('city').text),
                      alive: true,
-                     first_seen: (@loader.generated if family.first_seen.nil?) }
+                     first_seen: family.first_seen || @loader.generated }
           XML_MAPPING.each do |k, v|
             newfam[k] = xml_family.css(v).text
           end

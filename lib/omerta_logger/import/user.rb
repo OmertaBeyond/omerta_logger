@@ -50,7 +50,7 @@ module OmertaLogger
                                  honor_points: xml_user.css('hps').text,
                                  level: enumify(xml_user.css('level').text),
                                  donor: xml_user.css('donate').text.to_i != 0,
-                                 first_seen: (@loader.generated if user.first_seen.nil?),
+                                 first_seen: user.first_seen || @loader.generated,
                                  last_seen: @loader.generated,
                                  alive: true)
           update_online_time(user)
