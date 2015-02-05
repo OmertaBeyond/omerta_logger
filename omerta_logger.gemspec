@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "omerta_logger"
   s.version     = OmertaLogger::VERSION
   s.authors     = ["MurderInc"]
-  s.email       = ["MurderInc@faffie.biz"]
+  s.email       = ["MurderInc@omertabeyond.net"]
   s.homepage    = "https://github.com/Baelor/omerta_logger"
   s.summary     = "Provides a configurable logger for the MMORPG Omerta as a mountable rails engine."
   s.description = "Provides a configurable logger for the MMORPG Omerta as a mountable rails engine."
