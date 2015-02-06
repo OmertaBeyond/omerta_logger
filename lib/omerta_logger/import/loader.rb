@@ -32,6 +32,11 @@ module OmertaLogger
         begin
           @version = domain.versions.find_by!(version: xml_version.text)
         rescue ActiveRecord::RecordNotFound
+          domain.versions.where(end: nil).each do |v|
+            v.end = v.last_version_update.generated
+            v.save
+            Rails.logger.info "ending version #{v.version} at #{v.end}"
+          end
           @version = domain.versions.create(version: xml_version.text, start: @generated)
           Rails.logger.info "created new version #{xml_version.text} on #{domain.name}"
         end
