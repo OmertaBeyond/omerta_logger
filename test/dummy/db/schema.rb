@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206221348) do
+ActiveRecord::Schema.define(version: 20150206222045) do
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20150206221348) do
   end
 
   add_index "omerta_logger_family_rank_histories", ["family_id"], name: "index_omerta_logger_family_rank_histories_on_family_id"
+
+  create_table "omerta_logger_family_worth_histories", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "worth"
+    t.integer  "family_id"
+  end
+
+  add_index "omerta_logger_family_worth_histories", ["family_id"], name: "index_omerta_logger_family_worth_histories_on_family_id"
 
   create_table "omerta_logger_game_statistics", force: :cascade do |t|
     t.datetime "date"
