@@ -1,7 +1,7 @@
 object @family
 attributes :ext_family_id => :id
 attributes :name, :worth, :rank, :user_count, :hq, :color, :bank,
-           :city, :alive, :first_seen, :death_date, :rip_topic
+           :city, :alive, :first_seen, :death_date, :rip_topic, :position
 
 child :users => :users do
   extends "omerta_logger/users/show", :locals => { :hide_family => true }

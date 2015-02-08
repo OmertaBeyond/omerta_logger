@@ -7,6 +7,7 @@ module OmertaLogger
     has_many :family_worth_histories
     has_many :family_user_count_histories
     has_many :family_bank_histories
+    has_many :family_position_histories
     belongs_to :don, class_name: User
     belongs_to :sotto, class_name: User
     belongs_to :consig, class_name: User
@@ -21,6 +22,7 @@ module OmertaLogger
       save_worth_history if f.worth_changed?
       save_user_count_history if f.user_count_changed?
       save_bank_history if f.bank_changed?
+      save_position_history if f.position_changed?
     end
 
     def save_name_history
@@ -41,6 +43,10 @@ module OmertaLogger
 
     def save_bank_history
       family_bank_histories.create(bank: bank, date: version.last_version_update.generated)
+    end
+
+    def save_position_history
+      family_position_histories.create(position: position, date: version.last_version_update.generated)
     end
   end
 end

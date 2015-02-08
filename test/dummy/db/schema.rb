@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206231856) do
+ActiveRecord::Schema.define(version: 20150208073144) do
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150206231856) do
     t.integer  "rip_topic"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "omerta_logger_families", ["version_id"], name: "index_omerta_logger_families_on_version_id"
@@ -59,6 +60,14 @@ ActiveRecord::Schema.define(version: 20150206231856) do
   end
 
   add_index "omerta_logger_family_name_histories", ["family_id"], name: "index_omerta_logger_family_name_histories_on_family_id"
+
+  create_table "omerta_logger_family_position_histories", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "position"
+    t.integer  "family_id"
+  end
+
+  add_index "omerta_logger_family_position_histories", ["family_id"], name: "index_omerta_logger_family_position_histories_on_family_id"
 
   create_table "omerta_logger_family_rank_histories", force: :cascade do |t|
     t.datetime "date"

@@ -15,6 +15,14 @@ module OmertaLogger
           end
           family.update_attributes(newfam)
         end
+        set_position
+      end
+
+      def set_position
+        @version.families.where(alive: true).order(worth: :desc).each_with_index do |f, i|
+          f.position = i + 1
+          f.save
+        end
       end
 
       def import_tops
