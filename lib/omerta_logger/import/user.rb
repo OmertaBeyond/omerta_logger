@@ -6,8 +6,8 @@ module OmertaLogger
       # rubocop:disable Style/GuardClause
       def calculate_online_time_increment
         @online_time_increment = TimeDifference.between(
-            @previous_version_update.generated,
-            @version_update.generated
+          @previous_version_update.generated,
+          @version_update.generated
         ).in_seconds
         @missed_cycles         = false
         if @online_time_increment >= 10 * 60
