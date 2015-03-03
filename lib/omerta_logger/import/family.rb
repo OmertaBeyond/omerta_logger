@@ -39,7 +39,16 @@ module OmertaLogger
 
       def import_deaths
         @xml.css('family_deaths family').each do |xml_family|
-          family            = @version.families.find_or_create_by(ext_family_id: xml_family['id'])
+          family = @version.families.where(
+            name: xml_family.css('name').text
+          ).where(
+            'first_seen <= ?', Time.at(xml_family.css('time').text.to_i)
+          ).order(
+            'first_seen DESC'
+          ).first
+
+          family = @version.families.new if family.nil?
+
           family.name       = xml_family.css('name').text
           family.alive      = false
           family.rip_topic  = xml_family.css('riptopic').text
