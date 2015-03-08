@@ -24,6 +24,8 @@ module OmertaLogger
           game_stats[k] = economy.css(v).text
         end
 
+        game_stats.date = @loader.generated
+
         game_stats.save
       end
     end
