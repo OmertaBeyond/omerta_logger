@@ -8,6 +8,9 @@ module OmertaLogger
     has_many :family_user_count_histories
     has_many :family_bank_histories
     has_many :family_position_histories
+    has_many :casinos
+    has_many :business_objects
+    has_many :bullet_factories
     belongs_to :don, class_name: User
     belongs_to :sotto, class_name: User
     belongs_to :consig, class_name: User

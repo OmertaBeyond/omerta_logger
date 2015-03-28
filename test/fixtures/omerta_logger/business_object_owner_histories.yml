@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business_object: 1
+  date: 2015-03-28 21:59:28
+  user: 1
+  family: 1
+
+two:
+  business_object: 1
+  date: 2015-03-28 21:59:28
+  user: 1
+  family: 1

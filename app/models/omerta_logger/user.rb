@@ -18,6 +18,9 @@ module OmertaLogger
     has_many :user_revives
     has_many :hitlistings, class_name: 'Hitlist', foreign_key: 'target_id'
     has_many :added_hitlistings, class_name: 'Hitlist', foreign_key: 'hitlister_id'
+    has_many :casinos
+    has_many :business_objects
+    has_many :bullet_factories
     belongs_to :family
     belongs_to :version
     enum gender: [ :male, :female ]

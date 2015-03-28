@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ext_bulletfactory_id: 1
+  version_id: 1
+  user_id: 1
+  family_id: 1
+  city: 1
+  price: 1
+  bullets: 1
+
+two:
+  ext_bulletfactory_id: 1
+  version_id: 1
+  user_id: 1
+  family_id: 1
+  city: 1
+  price: 1
+  bullets: 1

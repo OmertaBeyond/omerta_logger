@@ -5,6 +5,9 @@ module OmertaLogger
     has_many :version_updates
     has_many :game_statistics
     has_many :hitlists
+    has_many :casinos
+    has_many :business_objects
+    has_many :bullet_factories
     belongs_to :domain
 
     def self.current

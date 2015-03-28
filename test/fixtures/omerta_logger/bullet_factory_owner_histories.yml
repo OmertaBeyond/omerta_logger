@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bullet_factory: 1
+  date: 2015-03-28 21:59:45
+  user: 1
+  family: 1
+
+two:
+  bullet_factory: 1
+  date: 2015-03-28 21:59:45
+  user: 1
+  family: 1

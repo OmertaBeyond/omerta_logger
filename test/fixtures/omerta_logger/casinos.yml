@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ext_casino_id: 1
+  version_id: 1
+  user_id: 1
+  family_id: 1
+  profit: 1
+  max_bet: 1
+  protection: 1
+  bankrupt: false
+
+two:
+  ext_casino_id: 1
+  version_id: 1
+  user_id: 1
+  family_id: 1
+  profit: 1
+  max_bet: 1
+  protection: 1
+  bankrupt: false

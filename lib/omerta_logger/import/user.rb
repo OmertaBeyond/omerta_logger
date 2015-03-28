@@ -33,11 +33,16 @@ module OmertaLogger
       def update_family(user, xml_family)
         if xml_family.length > 0
           user.family      = @version.families.find_by(name: xml_family.css('name').text, alive: true)
-          user.family_role = enumify(xml_family.css('role').text).sub('none', 'member')
+          user.family_role = enumify(xml_family.css('role').text.sub('None', 'Member'))
         else
           user.family      = nil
           user.family_role = nil
         end
+      end
+
+      def import
+        import_users
+        import_deaths
       end
 
       def import_users

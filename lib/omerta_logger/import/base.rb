@@ -11,7 +11,7 @@ module OmertaLogger
       end
 
       def enumify(string)
-        string.downcase.sub(' ', '_').sub('-', '_')
+        string.parameterize.underscore.to_sym
       end
     end
   end

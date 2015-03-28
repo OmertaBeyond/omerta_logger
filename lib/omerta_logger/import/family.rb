@@ -1,14 +1,24 @@
 module OmertaLogger
   module Import
     class Family < Base
-      XML_MAPPING = { name: 'name', worth: 'worth', rank: 'rank', user_count: 'users', hq: 'hq',
+      XML_MAPPING = { name:  'name', worth: 'worth', rank: 'rank', user_count: 'users', hq: 'hq',
                       color: 'color', bank: 'bank' }
+
+      def get_user(ext_user_id, name)
+        @version.users.find_or_create_by(ext_user_id: ext_user_id, name: name)
+      end
+
+      def import
+        import_families
+        import_deaths
+        import_tops
+      end
 
       def import_families
         @xml.css('families family').each do |xml_family|
           family = @version.families.find_or_create_by(ext_family_id: xml_family['id'])
-          newfam = { city: enumify(xml_family.css('city').text),
-                     alive: true,
+          newfam = { city:       enumify(xml_family.css('city').text),
+                     alive:      true,
                      first_seen: family.first_seen || @loader.generated }
           XML_MAPPING.each do |k, v|
             newfam[k] = xml_family.css(v).text
@@ -28,12 +38,10 @@ module OmertaLogger
       def import_tops
         @xml.css('families family').each do |xml_family|
           family        = @version.families.find_by_ext_family_id(xml_family['id'])
-          don           = @version.users.find_by_ext_user_id(xml_family.css('boss').first['id'].to_i)
-          family.don    = don
-          sotto         = @version.users.find_by_ext_user_id(xml_family.css('sotto').first['id'].to_i)
-          family.sotto  = sotto
-          consig        = @version.users.find_by_ext_user_id(xml_family.css('consig').first['id'].to_i)
-          family.consig = consig
+          family.don    = get_user(xml_family.css('boss').first['id'].to_i, xml_family.css('boss').first.text)
+          family.sotto  = get_user(xml_family.css('sotto').first['id'].to_i, xml_family.css('sotto').first.text)
+          family.consig = get_user(xml_family.css('consig').first['id'].to_i, xml_family.css('consig').first.text)
+          family.save
         end
       end
 

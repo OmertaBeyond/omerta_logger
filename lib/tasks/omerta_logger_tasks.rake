@@ -1,12 +1,11 @@
 desc "Import from XML API"
-task :import, [ :domain, :users, :families, :game_statistics, :hitlist ] => [ :environment ] do |t, args|
+task :import, [ :domain, :users, :families, :game_statistics, :hitlist, :business ] => [ :environment ] do |t, args|
   args.with_defaults( :domain => "com",
                       :users => true,
                       :families => true,
                       :game_statistics => true,
                       :hitlist => true,
-                      :user_rank_history => true,
-                      :user_family_history => true )
+                      :business => true )
   require "#{OmertaLogger::Engine.root}/lib/omerta_logger/import/loader"
   loader = OmertaLogger::Import::Loader.new(args)
   loader.import

@@ -5,13 +5,14 @@ require 'omerta_logger/import/family'
 require 'omerta_logger/import/user'
 require 'omerta_logger/import/game_statistic'
 require 'omerta_logger/import/hitlist'
+require 'omerta_logger/import/business'
 require 'time_difference'
 
 module OmertaLogger
   module Import
     class Loader
-      attr_accessor :domain, :users, :families, :game_statistics, :hitlist, :xml, :generated
-      attr_accessor :version, :version_update, :previous_version_update
+      attr_accessor :domain, :users, :families, :game_statistics, :hitlist, :business
+      attr_accessor :xml, :generated, :version, :version_update, :previous_version_update
 
       def initialize(flags = {})
         @domain = flags.values_at(:domain)
@@ -19,6 +20,7 @@ module OmertaLogger
         @families = flags.values_at(:families)
         @game_statistics = flags.values_at(:game_statistics)
         @hitlist = flags.values_at(:hitlist)
+        @business = flags.values_at(:business)
       end
 
       def load_xml(url)
@@ -49,23 +51,15 @@ module OmertaLogger
       end
 
       def exec_import
-        family_import = Family.new(self)
-        if @families
-          family_import.import_families
-          family_import.import_deaths
-        end
+        Family.new(self).import if @families
 
-        if @users
-          user_import = User.new(self)
-          user_import.import_users
-          user_import.import_deaths
-        end
-
-        family_import.import_tops if @families
+        User.new(self).import if @users
 
         GameStatistic.new(self).import if @game_statistics
 
         Hitlist.new(self).import if @hitlist
+
+        Business.new(self).import if @business
       end
 
       def import

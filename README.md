@@ -7,6 +7,7 @@ Provides a logger for the MMORPG [Omerta](http://barafranca.com) as a mountable 
 
 
 At the moment, the following entities are logged:
+
  * Users, including
   * Family history
   * Rank History
@@ -15,6 +16,15 @@ At the moment, the following entities are logged:
   * Renames
  * Families, including
   * Renames
+  * Bank history
+  * Position history
+  * User count history
+  * Worth history
+ * Business Objects, including
+  * Casinos
+   * Max. bet
+  * Bullet factories
+   * Bullet amount and price
  * Hitlistings
  * Game and Economy Statistics
 
@@ -38,10 +48,10 @@ all supported entities from .com.
 
 #### Examples
  * `rake import['nl']` will import all entities for barafranca.nl
- * `rake import['dm',true,true,false,false]` will import User and Family entities for omerta.dm, but skip game statistics and hitlistings
+ * `rake import['dm',true,true,false,false,false]` will import User and Family entities for omerta.dm, but skip game statistics, hitlistings and business objects
 
 ### Production
-For production usage, you should mount this app as an engine in your rails app. If you don't have an existing rails app, run `rails new foobar`, where `foobar` is your app name. Make sure you are using rails 4.2.0. Rails will create a new folder `foobar`. Next, add the following line to your Gemfile:
+For production usage, you should mount this app as an engine in your rails app. If you don't have an existing rails app, run `rails new foobar`, where `foobar` is your app name. Make sure you are using the rails version defined in `omerta_logger.gemspec`. Rails will create a new folder `foobar`. Next, add the following line to your Gemfile:
 
 `gem 'omerta_logger', git: "https://github.com/Baelor/omerta_logger.git"`
 

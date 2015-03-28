@@ -11,7 +11,153 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208073144) do
+ActiveRecord::Schema.define(version: 20150328221335) do
+
+  create_table "omerta_logger_bullet_factories", force: :cascade do |t|
+    t.integer "ext_bullet_factory_id", limit: 2
+    t.integer "version_id"
+    t.integer "user_id"
+    t.integer "family_id"
+    t.integer "city",                  limit: 1
+    t.integer "price",                 limit: 2
+    t.integer "bullets",               limit: 3
+  end
+
+  add_index "omerta_logger_bullet_factories", ["family_id"], name: "index_omerta_logger_bullet_factories_on_family_id"
+  add_index "omerta_logger_bullet_factories", ["user_id"], name: "index_omerta_logger_bullet_factories_on_user_id"
+  add_index "omerta_logger_bullet_factories", ["version_id"], name: "index_omerta_logger_bullet_factories_on_version_id"
+
+  create_table "omerta_logger_bullet_factory_bullet_histories", force: :cascade do |t|
+    t.integer  "bullet_factory_id"
+    t.datetime "date"
+    t.integer  "bullets",           limit: 3
+  end
+
+  add_index "omerta_logger_bullet_factory_bullet_histories", ["bullet_factory_id"], name: "index_bullet_bullet_factory_id"
+
+  create_table "omerta_logger_bullet_factory_owner_histories", force: :cascade do |t|
+    t.integer  "bullet_factory_id"
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "family_id"
+  end
+
+  add_index "omerta_logger_bullet_factory_owner_histories", ["bullet_factory_id"], name: "index_owner_bullet_factory_id"
+
+  create_table "omerta_logger_bullet_factory_price_histories", force: :cascade do |t|
+    t.integer  "bullet_factory_id"
+    t.datetime "date"
+    t.integer  "price",             limit: 2
+  end
+
+  add_index "omerta_logger_bullet_factory_price_histories", ["bullet_factory_id"], name: "index_price_bullet_factory_id"
+
+  create_table "omerta_logger_business_object_bankruptcy_histories", force: :cascade do |t|
+    t.integer  "business_object_id"
+    t.datetime "date"
+    t.boolean  "bankrupt"
+  end
+
+  add_index "omerta_logger_business_object_bankruptcy_histories", ["business_object_id"], name: "index_bankruptcy_business_object_id"
+
+  create_table "omerta_logger_business_object_owner_histories", force: :cascade do |t|
+    t.integer  "business_object_id"
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "family_id"
+  end
+
+  add_index "omerta_logger_business_object_owner_histories", ["business_object_id"], name: "index_owner_business_object_id"
+
+  create_table "omerta_logger_business_object_profit_histories", force: :cascade do |t|
+    t.integer  "business_object_id"
+    t.datetime "date"
+    t.integer  "profit"
+  end
+
+  add_index "omerta_logger_business_object_profit_histories", ["business_object_id"], name: "index_profit_business_object_id"
+
+  create_table "omerta_logger_business_object_protection_histories", force: :cascade do |t|
+    t.integer  "business_object_id"
+    t.datetime "date"
+    t.integer  "protection",         limit: 1
+  end
+
+  add_index "omerta_logger_business_object_protection_histories", ["business_object_id"], name: "index_protection_business_object_id"
+
+  create_table "omerta_logger_business_objects", force: :cascade do |t|
+    t.integer "ext_object_id", limit: 2
+    t.integer "version_id"
+    t.integer "user_id"
+    t.integer "family_id"
+    t.integer "object_type",   limit: 1
+    t.integer "city",          limit: 1
+    t.integer "profit"
+    t.integer "protection",    limit: 1
+    t.boolean "bankrupt"
+  end
+
+  add_index "omerta_logger_business_objects", ["family_id"], name: "index_omerta_logger_business_objects_on_family_id"
+  add_index "omerta_logger_business_objects", ["user_id"], name: "index_omerta_logger_business_objects_on_user_id"
+  add_index "omerta_logger_business_objects", ["version_id"], name: "index_omerta_logger_business_objects_on_version_id"
+
+  create_table "omerta_logger_casino_bankruptcy_histories", force: :cascade do |t|
+    t.integer  "casino_id"
+    t.datetime "date"
+    t.boolean  "bankrupt"
+  end
+
+  add_index "omerta_logger_casino_bankruptcy_histories", ["casino_id"], name: "index_bankruptcy_casino_id"
+
+  create_table "omerta_logger_casino_max_bet_histories", force: :cascade do |t|
+    t.integer  "casino_id"
+    t.datetime "date"
+    t.integer  "max_bet"
+  end
+
+  add_index "omerta_logger_casino_max_bet_histories", ["casino_id"], name: "index_max_bet_casino_id"
+
+  create_table "omerta_logger_casino_owner_histories", force: :cascade do |t|
+    t.integer  "casino_id"
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "family_id"
+  end
+
+  add_index "omerta_logger_casino_owner_histories", ["casino_id"], name: "index_owner_casino_id"
+
+  create_table "omerta_logger_casino_profit_histories", force: :cascade do |t|
+    t.integer  "casino_id"
+    t.datetime "date"
+    t.integer  "profit"
+  end
+
+  add_index "omerta_logger_casino_profit_histories", ["casino_id"], name: "index_profit_casino_id"
+
+  create_table "omerta_logger_casino_protection_histories", force: :cascade do |t|
+    t.integer  "casino_id"
+    t.datetime "date"
+    t.integer  "protection", limit: 1
+  end
+
+  add_index "omerta_logger_casino_protection_histories", ["casino_id"], name: "index_protection_casino_id"
+
+  create_table "omerta_logger_casinos", force: :cascade do |t|
+    t.integer "ext_casino_id", limit: 2
+    t.integer "version_id"
+    t.integer "user_id"
+    t.integer "family_id"
+    t.integer "casino_type",   limit: 1
+    t.integer "city",          limit: 1
+    t.integer "profit"
+    t.integer "max_bet"
+    t.integer "protection",    limit: 1
+    t.boolean "bankrupt"
+  end
+
+  add_index "omerta_logger_casinos", ["family_id"], name: "index_omerta_logger_casinos_on_family_id"
+  add_index "omerta_logger_casinos", ["user_id"], name: "index_omerta_logger_casinos_on_user_id"
+  add_index "omerta_logger_casinos", ["version_id"], name: "index_omerta_logger_casinos_on_version_id"
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name"
