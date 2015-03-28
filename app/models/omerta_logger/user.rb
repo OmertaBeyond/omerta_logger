@@ -1,3 +1,31 @@
+# == Schema Information
+#
+# Table name: omerta_logger_users
+#
+#  id                  :integer          not null, primary key
+#  ext_user_id         :integer
+#  version_id          :integer
+#  name                :string
+#  gender              :integer
+#  rank                :integer
+#  honor_points        :integer
+#  level               :integer
+#  donor               :boolean
+#  first_seen          :datetime
+#  last_seen           :datetime
+#  family_id           :integer
+#  family_role         :integer
+#  alive               :boolean
+#  akill               :boolean
+#  death_date          :datetime
+#  death_family        :string
+#  died_without_family :boolean
+#  rip_topic           :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#  online_time_seconds :integer          default(0)
+#
+
 require 'time_difference'
 
 module OmertaLogger

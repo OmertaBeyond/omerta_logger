@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: omerta_logger_casinos
+#
+#  id            :integer          not null, primary key
+#  ext_casino_id :integer
+#  version_id    :integer
+#  user_id       :integer
+#  family_id     :integer
+#  casino_type   :integer
+#  city          :integer
+#  profit        :integer
+#  max_bet       :integer
+#  protection    :integer
+#  bankrupt      :boolean
+#
+
 module OmertaLogger
   class Casino < ActiveRecord::Base
     belongs_to :version

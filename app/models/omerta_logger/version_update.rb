@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: omerta_logger_version_updates
+#
+#  id         :integer          not null, primary key
+#  version_id :integer
+#  generated  :datetime
+#  duration   :float
+#
+
 module OmertaLogger
   class VersionUpdate < ActiveRecord::Base
     belongs_to :version

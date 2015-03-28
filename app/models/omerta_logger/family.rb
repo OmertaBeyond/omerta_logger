@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: omerta_logger_families
+#
+#  id            :integer          not null, primary key
+#  ext_family_id :integer
+#  version_id    :integer
+#  name          :string
+#  worth         :integer
+#  rank          :integer
+#  user_count    :integer
+#  hq            :integer
+#  color         :string
+#  bank          :integer
+#  city          :integer
+#  don_id        :integer
+#  sotto_id      :integer
+#  consig_id     :integer
+#  first_seen    :datetime
+#  alive         :boolean
+#  death_date    :datetime
+#  rip_topic     :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  position      :integer
+#
+
 module OmertaLogger
   class Family < ActiveRecord::Base
     has_many :users

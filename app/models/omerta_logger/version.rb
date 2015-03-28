@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: omerta_logger_versions
+#
+#  id         :integer          not null, primary key
+#  version    :string
+#  domain_id  :integer
+#  start      :datetime
+#  end        :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 module OmertaLogger
   class Version < ActiveRecord::Base
     has_many :users

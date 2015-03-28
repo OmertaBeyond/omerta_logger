@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: omerta_logger_business_objects
+#
+#  id            :integer          not null, primary key
+#  ext_object_id :integer
+#  version_id    :integer
+#  user_id       :integer
+#  family_id     :integer
+#  object_type   :integer
+#  city          :integer
+#  profit        :integer
+#  protection    :integer
+#  bankrupt      :boolean
+#
+
 module OmertaLogger
   class BusinessObject < ActiveRecord::Base
     belongs_to :version

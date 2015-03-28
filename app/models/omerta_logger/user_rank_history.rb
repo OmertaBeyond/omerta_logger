@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: omerta_logger_user_rank_histories
+#
+#  id      :integer          not null, primary key
+#  date    :datetime
+#  rank    :integer
+#  user_id :integer
+#
+
 module OmertaLogger
   class UserRankHistory < ActiveRecord::Base
     belongs_to :user

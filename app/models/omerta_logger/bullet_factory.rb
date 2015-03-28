@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: omerta_logger_bullet_factories
+#
+#  id                    :integer          not null, primary key
+#  ext_bullet_factory_id :integer
+#  version_id            :integer
+#  user_id               :integer
+#  family_id             :integer
+#  city                  :integer
+#  price                 :integer
+#  bullets               :integer
+#
+
 module OmertaLogger
   class BulletFactory < ActiveRecord::Base
     belongs_to :version
