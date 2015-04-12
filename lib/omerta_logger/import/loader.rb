@@ -35,7 +35,12 @@ module OmertaLogger
           @version = domain.versions.find_by!(version: xml_version.text)
         rescue ActiveRecord::RecordNotFound
           domain.versions.where(end: nil).each do |v|
-            v.end = v.last_version_update.generated
+            last_version_update = v.last_version_update
+            if last_version_update.nil?
+              v.end = DateTime.now
+            else
+              v.end = last_version_update.generated
+            end
             v.save
             Rails.logger.info "ending version #{v.version} at #{v.end}"
           end
