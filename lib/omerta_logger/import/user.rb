@@ -90,7 +90,7 @@ module OmertaLogger
 
           user.alive      = false
           user.rip_topic  = xml_user.css('riptopic').text
-          user.death_date = Time.at(xml_user.css('time').text.to_i)
+          user.death_date = Time.zone.at(xml_user.css('time').text.to_i)
 
           user.save
         end

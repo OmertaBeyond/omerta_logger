@@ -78,7 +78,7 @@ module OmertaLogger
 
     def online_percentage
       return nil if first_seen.nil?
-      version_time = TimeDifference.between(first_seen, death_date || version.last_version_update.generated || Time.now)
+      version_time = TimeDifference.between(first_seen, death_date || version.last_version_update.generated || Time.zone.now)
       on_perc = ((online_time_seconds / version_time.in_seconds) * 100.0)
       on_perc = 0.0 if on_perc.nan?
       # limit to 100.0 for users on their first login cycle

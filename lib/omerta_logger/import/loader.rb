@@ -37,7 +37,7 @@ module OmertaLogger
           domain.versions.where(end: nil).each do |v|
             last_version_update = v.last_version_update
             if last_version_update.nil?
-              v.end = DateTime.now
+              v.end = DateTime.zone.now
             else
               v.end = last_version_update.generated
             end
@@ -50,7 +50,7 @@ module OmertaLogger
       end
 
       def save_version_update(import_start)
-        @version_update.duration = TimeDifference.between(import_start, Time.now).in_seconds
+        @version_update.duration = TimeDifference.between(import_start, Time.zone.now).in_seconds
         @version_update.save
         Rails.logger.info "imported update for #{@version.domain.name} in #{@version_update.duration}s"
       end
@@ -68,10 +68,10 @@ module OmertaLogger
       end
 
       def import
-        import_start = Time.now
+        import_start = Time.zone.now
         domain = Domain.find_by_name!(@domain)
         load_xml(domain.api_url)
-        @generated = Time.at(@xml.css('generated').first.text.to_i)
+        @generated = Time.zone.at(@xml.css('generated').first.text.to_i)
         find_or_create_version(domain)
 
         @previous_version_update = @version.last_version_update

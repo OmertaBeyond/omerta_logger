@@ -50,7 +50,7 @@ module OmertaLogger
           family = @version.families.where(
             name: xml_family.css('name').text
           ).where(
-            'first_seen <= ?', Time.at(xml_family.css('time').text.to_i)
+            'first_seen <= ?', Time.zone.at(xml_family.css('time').text.to_i)
           ).order(
             'first_seen DESC'
           ).first
@@ -60,7 +60,7 @@ module OmertaLogger
           family.name       = xml_family.css('name').text
           family.alive      = false
           family.rip_topic  = xml_family.css('riptopic').text
-          family.death_date = Time.at(xml_family.css('time').text.to_i)
+          family.death_date = Time.zone.at(xml_family.css('time').text.to_i)
           family.save
         end
       end

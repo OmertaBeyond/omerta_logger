@@ -18,7 +18,7 @@ module OmertaLogger
       def import
         @xml.css('hitlists hitlist').each do |xml_hitlist|
           hitlist        = @version.hitlists.find_or_create_by(ext_hitlist_id: xml_hitlist['id'].to_i)
-          hitlist.date   = Time.at(xml_hitlist.css('time').text.to_i)
+          hitlist.date   = Time.zone.at(xml_hitlist.css('time').text.to_i)
           hitlist.amount = xml_hitlist.css('amount').text.to_i
           set_target(hitlist, xml_hitlist)
           set_hitlister(hitlist, xml_hitlist)
