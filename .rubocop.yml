@@ -13,7 +13,7 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
     - 'vendor/**/*'
 Metrics/AbcSize:
-  Max: 35
+  Max: 40
 Style/SpaceInsideBrackets:
   Enabled: false # spaces make enums in models more readable
 Metrics/MethodLength:
