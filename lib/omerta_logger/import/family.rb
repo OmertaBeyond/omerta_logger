@@ -26,6 +26,7 @@ module OmertaLogger
             newfam[k] = xml_family.css(v).text
           end
           family.update_attributes(newfam)
+          Rails.logger.debug "imported family #{family.name}"
         end
         set_position
       end
@@ -34,6 +35,7 @@ module OmertaLogger
         @version.families.where(alive: true).order(worth: :desc).each_with_index do |f, i|
           f.position = i + 1
           f.save
+          Rails.logger.debug "family #{f.name}: set position #{f.position}"
         end
       end
 
@@ -44,6 +46,7 @@ module OmertaLogger
           family.sotto  = get_user(xml_family.css('sotto').first['id'].to_i, xml_family.css('sotto').first.text)
           family.consig = get_user(xml_family.css('consig').first['id'].to_i, xml_family.css('consig').first.text)
           family.save
+          Rails.logger.debug "set family tops for family #{family.name}"
         end
       end
 
@@ -66,6 +69,7 @@ module OmertaLogger
           family.rip_topic  = xml_family.css('riptopic').text
           family.death_date = Time.zone.at(xml_family.css('time').text.to_i)
           family.save
+          Rails.logger.debug "marked family #{family.name} as down"
         end
       end
     end

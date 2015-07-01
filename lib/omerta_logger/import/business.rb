@@ -35,6 +35,7 @@ module OmertaLogger
         casino.profit = xml_casino.css('profit').text
         casino.bankrupt = xml_casino.css('closed').text == 'BR'
         casino.save
+        Rails.logger.debug "imported casino #{casino.ext_casino_id} (#{casino.casino_type} in #{casino.city})"
       end
 
       def import_business_object(xml_business)
@@ -46,6 +47,7 @@ module OmertaLogger
         business.profit = xml_business.css('profit').text
         business.bankrupt = xml_business.css('closed').text == 'BR'
         business.save
+        Rails.logger.debug "imported business object #{business.ext_object_id} (#{business.object_type} in #{business.city})"
       end
 
       def import_bullet_factories
@@ -56,6 +58,7 @@ module OmertaLogger
           bf.price = xml_bf.css('price').text.to_i
           bf.bullets = xml_bf.css('bullets').text.to_i
           bf.save
+          Rails.logger.debug "imported bullet factory #{bf.ext_bullet_factory_id} (#{bf.city})"
         end
       end
     end

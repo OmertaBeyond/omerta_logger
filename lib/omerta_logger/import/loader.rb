@@ -27,12 +27,14 @@ module OmertaLogger
         @xml = Nokogiri::XML(open(url)) do |config|
           config.strict.nonet
         end
+        Rails.logger.debug "loaded XML from #{url}"
       end
 
       def find_or_create_version(domain)
         xml_version = @xml.css('version').first
         begin
           @version = domain.versions.find_by!(version: xml_version.text)
+          Rails.logger.debug "loaded version #{@version.version}"
         rescue ActiveRecord::RecordNotFound
           domain.versions.where(end: nil).each do |v|
             last_version_update = v.last_version_update
@@ -56,6 +58,7 @@ module OmertaLogger
       end
 
       def exec_import
+        Rails.logger.debug 'executing import'
         Family.new(self).import if @families
 
         User.new(self).import if @users

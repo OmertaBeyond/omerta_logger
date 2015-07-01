@@ -27,6 +27,7 @@ module OmertaLogger
         game_stats.date = @loader.generated
 
         game_stats.save
+        Rails.logger.debug 'saved game stats'
       end
     end
   end

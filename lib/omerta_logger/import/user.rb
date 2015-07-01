@@ -34,9 +34,11 @@ module OmertaLogger
         if xml_family.length > 0
           user.family      = @version.families.find_by(name: xml_family.css('name').text, alive: true)
           user.family_role = enumify(xml_family.css('role').text.sub('None', 'Member'))
+          Rails.logger.debug "user #{user.name}: set new family #{user.family.name}"
         else
           user.family      = nil
           user.family_role = nil
+          Rails.logger.debug "user #{user.name}: removed family"
         end
       end
 
@@ -61,6 +63,7 @@ module OmertaLogger
           update_online_time(user)
           update_family(user, xml_user.css('family'))
           user.save
+          Rails.logger.debug "imported user #{user.name}"
         end
       end
 
@@ -69,12 +72,14 @@ module OmertaLogger
         user.died_without_family = true
         if xml_family.text.nil?
           user.family = nil
+          Rails.logger.debug "user #{user.name} died without family"
         else
           user.family       = @version.families.find_by(name: xml_family.text)
           user.death_family = xml_family.text
           if xml_user.css('familyid').text != '0'
             user.died_without_family = false
           end
+          Rails.logger.debug "user #{user.name} died in family #{user.death_family}"
         end
       end
 
@@ -93,6 +98,7 @@ module OmertaLogger
           user.death_date = Time.zone.at(xml_user.css('time').text.to_i)
 
           user.save
+          Rails.logger.debug "imported death for user #{user.name}"
         end
       end
     end

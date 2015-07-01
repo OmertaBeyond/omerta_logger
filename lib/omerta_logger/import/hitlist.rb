@@ -23,6 +23,7 @@ module OmertaLogger
           set_target(hitlist, xml_hitlist)
           set_hitlister(hitlist, xml_hitlist)
 
+          Rails.logger.debug "saved hitlisting on #{hitlist.target.name}"
           hitlist.save
         end
       end
