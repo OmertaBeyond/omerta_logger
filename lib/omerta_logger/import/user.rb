@@ -74,7 +74,6 @@ module OmertaLogger
           user.family = nil
           Rails.logger.debug "user #{user.name} died without family"
         else
-          user.family       = @version.families.find_by(name: xml_family.text)
           user.death_family = xml_family.text
           if xml_user.css('familyid').text != '0'
             user.died_without_family = false
