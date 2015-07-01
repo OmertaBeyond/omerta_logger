@@ -55,6 +55,10 @@ module OmertaLogger
       save_position_history if f.position_changed?
     end
 
+    after_save do |f|
+      remove_users if f.alive_changed? && !f.alive && f.alive_was
+    end
+
     def save_name_history
       family_name_histories.create(name: name_was, date: version.last_version_update.generated)
     end
@@ -77,6 +81,14 @@ module OmertaLogger
 
     def save_position_history
       family_position_histories.create(position: position, date: version.last_version_update.generated)
+    end
+
+    def remove_users
+      users.each do |u|
+        u.family = nil
+        u.family_role = nil
+        u.save
+      end
     end
   end
 end
