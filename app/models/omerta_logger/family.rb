@@ -47,12 +47,13 @@ module OmertaLogger
                  :philadelphia, :baltimore, :corleone, :palermo ]
 
     before_save do |f|
-      save_name_history if !f.new_record? && f.name_changed? && !f.name_was.nil?
-      save_rank_history if f.rank_changed?
-      save_worth_history if f.worth_changed?
-      save_user_count_history if f.user_count_changed?
-      save_bank_history if f.bank_changed?
-      save_position_history if f.position_changed?
+      save_name_history if OmertaLogger.config.family_name_history && !f.new_record? && f.name_changed? &&
+                           !f.name_was.nil?
+      save_rank_history if OmertaLogger.config.family_rank_history && f.rank_changed?
+      save_worth_history if OmertaLogger.config.family_worth_history && f.worth_changed?
+      save_user_count_history if OmertaLogger.config.family_user_count_history && f.user_count_changed?
+      save_bank_history if OmertaLogger.config.family_bank_history && f.bank_changed?
+      save_position_history if OmertaLogger.config.family_position_history && f.position_changed?
     end
 
     after_save do |f|

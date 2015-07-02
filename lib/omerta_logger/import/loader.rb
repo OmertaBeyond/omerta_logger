@@ -11,16 +11,10 @@ require 'time_difference'
 module OmertaLogger
   module Import
     class Loader
-      attr_accessor :domain, :users, :families, :game_statistics, :hitlist, :business
-      attr_accessor :xml, :generated, :version, :version_update, :previous_version_update
+      attr_accessor :domain, :xml, :generated, :version, :version_update, :previous_version_update
 
-      def initialize(flags = {})
-        @domain = flags.values_at(:domain)
-        @users = flags.values_at(:users)
-        @families = flags.values_at(:families)
-        @game_statistics = flags.values_at(:game_statistics)
-        @hitlist = flags.values_at(:hitlist)
-        @business = flags.values_at(:business)
+      def initialize(domain)
+        @domain = domain
       end
 
       def load_xml(url)
@@ -59,15 +53,15 @@ module OmertaLogger
 
       def exec_import
         Rails.logger.debug 'executing import'
-        Family.new(self).import if @families
+        Family.new(self).import if OmertaLogger.config.family
 
-        User.new(self).import if @users
+        User.new(self).import if OmertaLogger.config.user
 
-        GameStatistic.new(self).import if @game_statistics
+        GameStatistic.new(self).import if OmertaLogger.config.game_statistic
 
-        Hitlist.new(self).import if @hitlist
+        Hitlist.new(self).import if OmertaLogger.config.hitlist
 
-        Business.new(self).import if @business
+        Business.new(self).import
       end
 
       def import

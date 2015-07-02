@@ -12,6 +12,7 @@ rerun.txt
 pickle-email-*.html
 .idea
 
+/test/dummy/config/initializers/omerta_logger.rb
 /test/dummy/config/initializers/secret_token.rb
 /test/dummy/config/secrets.yml
 

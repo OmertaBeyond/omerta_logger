@@ -33,10 +33,13 @@ module OmertaLogger
     include ActiveModel::Dirty
 
     before_save do |u|
-      save_rank_history if u.rank_changed?
-      save_family_history if u.family_id_changed? || u.family_role_changed?
-      save_name_history if !u.new_record? && u.name_changed? && !u.name_was.nil?
-      save_revive if u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
+      save_rank_history if OmertaLogger.config.user_rank_history && u.rank_changed?
+      save_family_history if OmertaLogger.config.user_family_history && (
+        u.family_id_changed? || u.family_role_changed?
+      )
+      save_name_history if OmertaLogger.config.user_name_history && !u.new_record? && u.name_changed? &&
+                           !u.name_was.nil?
+      save_revive if OmertaLogger.config.user_revive && u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
     end
 
     has_many :user_rank_histories

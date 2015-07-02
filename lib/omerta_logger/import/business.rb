@@ -16,13 +16,13 @@ module OmertaLogger
       def import
         @xml.css('business cbusiness').each do |xml_business|
           if Casino.casino_types.include? enumify(xml_business['type'])
-            import_casino xml_business
+            import_casino xml_business if OmertaLogger.config.casino
           else
-            import_business_object xml_business
+            import_business_object xml_business if OmertaLogger.config.business_object
           end
         end
 
-        import_bullet_factories
+        import_bullet_factories if OmertaLogger.config.bullet_factory
       end
 
       def import_casino(xml_casino)

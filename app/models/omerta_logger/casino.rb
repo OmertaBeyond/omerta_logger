@@ -32,11 +32,13 @@ module OmertaLogger
                  :philadelphia, :baltimore, :corleone, :palermo ]
 
     before_save do |c|
-      save_owner_history if c.user_id_changed? || c.family_id_changed?
-      save_profit_history if c.profit_changed?
-      save_max_bet_history if c.max_bet_changed?
-      save_protection_history if c.protection_changed?
-      save_bankruptcy_history if c.bankrupt_changed?
+      save_owner_history if OmertaLogger.config.casino_owner_history && (
+        c.user_id_changed? || c.family_id_changed?
+      )
+      save_profit_history if OmertaLogger.config.casino_profit_history && c.profit_changed?
+      save_max_bet_history if OmertaLogger.config.casino_max_bet_history && c.max_bet_changed?
+      save_protection_history if OmertaLogger.config.casino_protection_history && c.protection_changed?
+      save_bankruptcy_history if OmertaLogger.config.casino_bankruptcy_history && c.bankrupt_changed?
     end
 
     def save_owner_history

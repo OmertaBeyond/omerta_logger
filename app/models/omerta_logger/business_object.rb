@@ -30,10 +30,12 @@ module OmertaLogger
                  :philadelphia, :baltimore, :corleone, :palermo ]
 
     before_save do |bo|
-      save_owner_history if bo.user_id_changed? || bo.family_id_changed?
-      save_profit_history if bo.profit_changed?
-      save_protection_history if bo.protection_changed?
-      save_bankruptcy_history if bo.bankrupt_changed?
+      save_owner_history if OmertaLogger.config.business_object_owner_history && (
+        bo.user_id_changed? || bo.family_id_changed?
+      )
+      save_profit_history if OmertaLogger.config.business_object_profit_history && bo.profit_changed?
+      save_protection_history if OmertaLogger.config.business_object_protection_history && bo.protection_changed?
+      save_bankruptcy_history if OmertaLogger.config.business_object_bankruptcy_history && bo.bankrupt_changed?
     end
 
     def save_owner_history

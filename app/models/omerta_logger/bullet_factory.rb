@@ -25,9 +25,11 @@ module OmertaLogger
                  :philadelphia, :baltimore, :corleone, :palermo ]
 
     before_save do |bf|
-      save_owner_history if bf.user_id_changed? || bf.family_id_changed?
-      save_bullet_history if bf.bullets_changed?
-      save_price_history if bf.price_changed?
+      save_owner_history if OmertaLogger.config.bullet_factory_owner_history && (
+        bf.user_id_changed? || bf.family_id_changed?
+      )
+      save_bullet_history if OmertaLogger.config.bullet_factory_bullet_history && bf.bullets_changed?
+      save_price_history if OmertaLogger.config.bullet_factory_price_history && bf.price_changed?
     end
 
     def save_owner_history

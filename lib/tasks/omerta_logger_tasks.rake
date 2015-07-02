@@ -1,14 +1,18 @@
 desc "Import from XML API"
-task :import, [ :domain, :users, :families, :game_statistics, :hitlist, :business ] => [ :environment ] do |t, args|
-  args.with_defaults( :domain => "com",
-                      :users => true,
-                      :families => true,
-                      :game_statistics => true,
-                      :hitlist => true,
-                      :business => true )
+task :import, [ :daemonize ] => [ :environment ] do |t, args|
+  if !OmertaLogger.config.respond_to? :domains
+    raise "Please provide initializer file. See test/dummy/config/initializers/omerta_logger.rb.example"
+  end
+
+  args.with_defaults( :daemonize => false )
   require "#{OmertaLogger::Engine.root}/lib/omerta_logger/import/loader"
-  loader = OmertaLogger::Import::Loader.new(args)
-  loader.import
+  begin
+    OmertaLogger.config.domains.each do |domain|
+      loader = OmertaLogger::Import::Loader.new(domain)
+      loader.import
+    end
+    sleep 65 - Time.zone.now.sec if args.daemnoize # sleep until 5 seconds after the next minute starts
+  end while args.daemonize
 end
 
 namespace :version do
