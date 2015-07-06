@@ -11,7 +11,7 @@ task :import, [ :daemonize ] => [ :environment ] do |t, args|
       loader = OmertaLogger::Import::Loader.new(domain)
       loader.import
     end
-    sleep 65 - Time.zone.now.sec if args.daemnoize # sleep until 5 seconds after the next minute starts
+    sleep 65 - Time.zone.now.sec if args.daemonize # sleep until 5 seconds after the next minute starts
   end while args.daemonize
 end
 
