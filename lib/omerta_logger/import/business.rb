@@ -2,7 +2,7 @@ module OmertaLogger
   module Import
     class Business < Base
       def set_owner(xml_business, business)
-        owner = xml_business.css('owner').first
+        owner = xml_business.at_css('owner')
         owner_id = owner['id'].to_i
         if owner_id == 0
           business.user = nil

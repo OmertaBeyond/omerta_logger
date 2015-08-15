@@ -42,9 +42,9 @@ module OmertaLogger
       def import_tops
         @xml.css('families family').each do |xml_family|
           family        = @version.families.find_by_ext_family_id(xml_family['id'])
-          family.don    = get_user(xml_family.css('boss').first['id'].to_i, xml_family.css('boss').first.text)
-          family.sotto  = get_user(xml_family.css('sotto').first['id'].to_i, xml_family.css('sotto').first.text)
-          family.consig = get_user(xml_family.css('consig').first['id'].to_i, xml_family.css('consig').first.text)
+          family.don    = get_user(xml_family.at_css('boss')['id'].to_i, xml_family.at_css('boss').text)
+          family.sotto  = get_user(xml_family.at_css('sotto')['id'].to_i, xml_family.at_css('sotto').text)
+          family.consig = get_user(xml_family.at_css('consig')['id'].to_i, xml_family.at_css('consig').text)
           family.save
           Rails.logger.debug "set family tops for family #{family.name}"
         end

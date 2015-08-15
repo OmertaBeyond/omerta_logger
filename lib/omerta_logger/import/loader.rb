@@ -25,7 +25,7 @@ module OmertaLogger
       end
 
       def find_or_create_version(domain)
-        xml_version = @xml.css('version').first
+        xml_version = @xml.at_css('version')
         begin
           @version = domain.versions.find_by!(version: xml_version.text)
           Rails.logger.debug "loaded version #{@version.version}"
@@ -68,7 +68,7 @@ module OmertaLogger
         import_start = Time.zone.now
         domain = Domain.find_by_name!(@domain)
         load_xml(domain.api_url)
-        @generated = Time.zone.at(@xml.css('generated').first.text.to_i)
+        @generated = Time.zone.at(@xml.at_css('generated').text.to_i)
         find_or_create_version(domain)
 
         @previous_version_update = @version.last_version_update

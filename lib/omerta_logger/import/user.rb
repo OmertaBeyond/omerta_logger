@@ -51,7 +51,7 @@ module OmertaLogger
         calculate_online_time_increment
         @xml.css('users user').each do |xml_user|
           user = @version.users.find_or_create_by(ext_user_id: xml_user['id'])
-          user.assign_attributes(name: xml_user.css('name').first.text,
+          user.assign_attributes(name: xml_user.at_css('name').text,
                                  gender: enumify(xml_user.css('gender').text),
                                  rank: enumify(xml_user.css('rank').text),
                                  honor_points: xml_user.css('hps').text,
