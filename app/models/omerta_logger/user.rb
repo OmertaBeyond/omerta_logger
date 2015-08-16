@@ -81,7 +81,12 @@ module OmertaLogger
 
     def online_percentage
       return nil if first_seen.nil?
-      version_time = TimeDifference.between(first_seen, death_date || version.last_version_update.generated || Time.zone.now)
+      # users can now pre-register before versions start. for those users, the period looked at for online_percentage
+      # should be based on the version start date instead of their registration date
+      diff_start = [first_seen, version.start].max
+      # Time.zone.now is necessary to stay BC compatible with data from before version_update was introduced
+      diff_end = death_date || version.last_version_update.generated || Time.zone.now
+      version_time = TimeDifference.between(diff_start, diff_end)
       on_perc = ((online_time_seconds / version_time.in_seconds) * 100.0)
       on_perc = 0.0 if on_perc.nan?
       # limit to 100.0 for users on their first login cycle
