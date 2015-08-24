@@ -25,7 +25,7 @@ module OmertaLogger
     has_many :business_object_bankruptcy_histories
 
     enum object_type: [ :booze_warehouse, :bank, :construction_company,
-                        :hospital, :narcotics_warehouse, :poker_basement, :travel_agency ]
+                        :hospital, :narcotics_warehouse, :poker_basement, :travel_agency, :gambling_office ]
     enum city: [ :detroit, :chicago, :new_york, :las_vegas,
                  :philadelphia, :baltimore, :corleone, :palermo ]
 
