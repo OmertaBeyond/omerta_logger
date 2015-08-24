@@ -13,27 +13,57 @@ module OmertaLogger
         end
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def import
+        casino_is_business = false
         @xml.css('business cbusiness').each do |xml_business|
           if Casino.casino_types.include? enumify(xml_business['type'])
-            import_casino xml_business if OmertaLogger.config.casino
+            casino_is_business = true
+            import_casino(xml_business, :business) if OmertaLogger.config.casino
           else
             import_business_object xml_business if OmertaLogger.config.business_object
           end
         end
 
+        import_casinos if !casino_is_business && OmertaLogger.config.casino
+
         import_bullet_factories if OmertaLogger.config.bullet_factory
       end
 
-      def import_casino(xml_casino)
+      def import_casinos
+        @xml.css('casinos casino').each do |xml_casino|
+          import_casino(xml_casino, :casino)
+        end
+      end
+
+      def casino_type(type)
+        case type
+        when 'roul'
+          :roulette
+        when 'ng'
+          :numbers_game
+        when 'slot'
+          :slotmachine
+        when 'bj'
+          :blackjack
+        when 'pb'
+          :punto_banco
+        end
+      end
+
+      def import_casino(xml_casino, type)
         casino = @version.casinos.find_or_create_by(ext_casino_id: xml_casino['id'])
-        casino.casino_type = enumify(xml_casino['type'])
+        casino.casino_type = if type == :business
+                               enumify(xml_casino['type'])
+                             else
+                               casino_type(xml_casino['type'])
+                             end
         casino.city = enumify(xml_casino.css('city').text)
         set_owner(xml_casino, casino)
-        casino.protection = xml_casino.css('protection').text
+        casino.protection = xml_casino.css('protection').text if type == :business
         casino.max_bet = xml_casino.css('maxbet').text
         casino.profit = xml_casino.css('profit').text
-        casino.bankrupt = xml_casino.css('closed').text == 'BR'
+        casino.bankrupt = xml_casino.css('closed').text == 'BR' if type == :business
         casino.save
         Rails.logger.debug "imported casino #{casino.ext_casino_id} (#{casino.casino_type} in #{casino.city})"
       end
