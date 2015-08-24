@@ -101,4 +101,8 @@ OmertaLogger.setup do |config|
 
   # Keep a history of user revives. True by default.
   # config.user_revive = true
+
+  # Import version updates from archive. True by default.
+  # This will automatically import any missed updates from Omerta's FTP archive.
+  # config.archive = true
 end

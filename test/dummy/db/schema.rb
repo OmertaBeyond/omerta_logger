@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328221335) do
+ActiveRecord::Schema.define(version: 20150824140637) do
 
   create_table "omerta_logger_bullet_factories", force: :cascade do |t|
     t.integer "ext_bullet_factory_id", limit: 2
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20150328221335) do
     t.string   "api_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "archive_url"
   end
 
   create_table "omerta_logger_families", force: :cascade do |t|

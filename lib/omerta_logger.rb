@@ -34,6 +34,7 @@ module OmertaLogger
     @config.user_online_time = true
     @config.user_rank_history = true
     @config.user_revive = true
+    @config.archive = true
   end
 
   def self.setup(&block)
