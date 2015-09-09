@@ -97,5 +97,10 @@ module OmertaLogger
     def last_user_online_time
       user_online_times.order('end DESC').first
     end
+
+    def rank_short
+      rank_abbr = %w(ES DB DG PIC SHO PP TH ASO MOB SOL SWI ASA LC CHF BR CDC GF FL)
+      rank_abbr[User.ranks[rank]]
+    end
   end
 end
