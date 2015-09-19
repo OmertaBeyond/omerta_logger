@@ -16,7 +16,7 @@ OmertaLogger::Domain.create(
 OmertaLogger::Domain.create(
   name: 'pt',
   api_url: 'https://omerta.pt/BeO/webroot/index.php?module=API&action=statistics',
-  archive_url: 'ftp://archive.omerta.land/pt/'
+  archive_url: 'ftp://archive.omerta.land/com.pt/'
 )
 OmertaLogger::Domain.create(
   name: 'tr',
