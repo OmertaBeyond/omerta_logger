@@ -13,14 +13,14 @@
 
 module OmertaLogger
   class Version < ActiveRecord::Base
-    has_many :users
-    has_many :families
-    has_many :version_updates
-    has_many :game_statistics
-    has_many :hitlists
-    has_many :casinos
-    has_many :business_objects
-    has_many :bullet_factories
+    has_many :users, dependent: :destroy
+    has_many :families, dependent: :destroy
+    has_many :version_updates, dependent: :destroy
+    has_many :game_statistics, dependent: :destroy
+    has_many :hitlists, dependent: :destroy
+    has_many :casinos, dependent: :destroy
+    has_many :business_objects, dependent: :destroy
+    has_many :bullet_factories, dependent: :destroy
     belongs_to :domain
 
     def self.current

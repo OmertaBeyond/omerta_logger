@@ -12,6 +12,6 @@
 
 module OmertaLogger
   class Domain < ActiveRecord::Base
-    has_many :versions
+    has_many :versions, dependent: :destroy
   end
 end

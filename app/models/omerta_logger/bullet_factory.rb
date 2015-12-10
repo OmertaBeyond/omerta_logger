@@ -17,9 +17,9 @@ module OmertaLogger
     belongs_to :version
     belongs_to :user
     belongs_to :family
-    has_many :bullet_factory_owner_histories
-    has_many :bullet_factory_bullet_histories
-    has_many :bullet_factory_price_histories
+    has_many :bullet_factory_owner_histories, dependent: :destroy
+    has_many :bullet_factory_bullet_histories, dependent: :destroy
+    has_many :bullet_factory_price_histories, dependent: :destroy
 
     enum city: [ :detroit, :chicago, :new_york, :las_vegas,
                  :philadelphia, :baltimore, :corleone, :palermo ]

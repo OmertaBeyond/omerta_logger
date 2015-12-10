@@ -28,13 +28,13 @@
 module OmertaLogger
   class Family < ActiveRecord::Base
     has_many :users
-    has_many :user_family_histories
-    has_many :family_name_histories
-    has_many :family_rank_histories
-    has_many :family_worth_histories
-    has_many :family_user_count_histories
-    has_many :family_bank_histories
-    has_many :family_position_histories
+    has_many :user_family_histories, dependent: :destroy
+    has_many :family_name_histories, dependent: :destroy
+    has_many :family_rank_histories, dependent: :destroy
+    has_many :family_worth_histories, dependent: :destroy
+    has_many :family_user_count_histories, dependent: :destroy
+    has_many :family_bank_histories, dependent: :destroy
+    has_many :family_position_histories, dependent: :destroy
     has_many :casinos
     has_many :business_objects
     has_many :bullet_factories

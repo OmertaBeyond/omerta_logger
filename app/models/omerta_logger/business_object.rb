@@ -19,10 +19,10 @@ module OmertaLogger
     belongs_to :version
     belongs_to :user
     belongs_to :family
-    has_many :business_object_owner_histories
-    has_many :business_object_profit_histories
-    has_many :business_object_protection_histories
-    has_many :business_object_bankruptcy_histories
+    has_many :business_object_owner_histories, dependent: :destroy
+    has_many :business_object_profit_histories, dependent: :destroy
+    has_many :business_object_protection_histories, dependent: :destroy
+    has_many :business_object_bankruptcy_histories, dependent: :destroy
 
     enum object_type: [ :booze_warehouse, :bank, :construction_company,
                         :hospital, :narcotics_warehouse, :poker_basement, :travel_agency, :gambling_office ]

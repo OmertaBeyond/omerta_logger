@@ -42,11 +42,11 @@ module OmertaLogger
       save_revive if OmertaLogger.config.user_revive && u.alive_changed? && !u.alive_was.nil? && !u.alive_was && u.alive
     end
 
-    has_many :user_rank_histories
-    has_many :user_family_histories
-    has_many :user_online_times
-    has_many :user_name_histories
-    has_many :user_revives
+    has_many :user_rank_histories, dependent: :destroy
+    has_many :user_family_histories, dependent: :destroy
+    has_many :user_online_times, dependent: :destroy
+    has_many :user_name_histories, dependent: :destroy
+    has_many :user_revives, dependent: :destroy
     has_many :hitlistings, class_name: 'Hitlist', foreign_key: 'target_id'
     has_many :added_hitlistings, class_name: 'Hitlist', foreign_key: 'hitlister_id'
     has_many :casinos

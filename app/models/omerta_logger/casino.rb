@@ -20,11 +20,11 @@ module OmertaLogger
     belongs_to :version
     belongs_to :user
     belongs_to :family
-    has_many :casino_owner_histories
-    has_many :casino_profit_histories
-    has_many :casino_max_bet_histories
-    has_many :casino_protection_histories
-    has_many :casino_bankruptcy_histories
+    has_many :casino_owner_histories, dependent: :destroy
+    has_many :casino_profit_histories, dependent: :destroy
+    has_many :casino_max_bet_histories, dependent: :destroy
+    has_many :casino_protection_histories, dependent: :destroy
+    has_many :casino_bankruptcy_histories, dependent: :destroy
 
     enum casino_type: [ :blackjack, :numbers_game, :punto_banco,
                         :roulette, :slotmachine ]
