@@ -105,7 +105,10 @@ module OmertaLogger
         find_or_create_version
 
         @previous_version_update = @version.last_version_update
-        return if !@previous_version_update.nil? && @previous_version_update.generated == @generated unless Rails.env.development?
+
+        if !@previous_version_update.nil? && @previous_version_update.generated == @generated && !Rails.env.development?
+          return
+        end
 
         # check archive for possible missed updates
         return if !skip_archive && scan_archive
