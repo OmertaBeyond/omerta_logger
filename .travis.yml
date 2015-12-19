@@ -1,6 +1,9 @@
+sudo: required
+dist: trusty
 language: ruby
 rvm:
- - 2.2.0
+ - 2.2.4
+before_install: gem install bundler
 script:
   - bundle exec rubocop -R
 notifications:
