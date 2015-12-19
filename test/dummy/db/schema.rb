@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824140637) do
+ActiveRecord::Schema.define(version: 20151219172546) do
 
   create_table "omerta_logger_bullet_factories", force: :cascade do |t|
     t.integer "ext_bullet_factory_id", limit: 2
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150824140637) do
     t.integer  "user_count"
     t.integer  "hq"
     t.string   "color"
-    t.integer  "bank"
+    t.integer  "bank",          limit: 8
     t.integer  "city"
     t.integer  "don_id"
     t.integer  "sotto_id"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 20150824140637) do
 
   create_table "omerta_logger_family_bank_histories", force: :cascade do |t|
     t.datetime "date"
-    t.integer  "bank"
+    t.integer  "bank",      limit: 8
     t.integer  "family_id"
   end
 
