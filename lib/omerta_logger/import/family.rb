@@ -52,25 +52,44 @@ module OmertaLogger
 
       def import_deaths
         @xml.css('family_deaths family').each do |xml_family|
-          family = @version.families.where(
-            name: xml_family.css('name').text
-          ).where(
-            'first_seen <= ?', Time.zone.at(xml_family.css('time').text.to_i)
-          ).where(
-            # prevents a race condition when fam is renamed to a downed fam
-            'id NOT IN (?)', @alive_families
-          ).order(
-            'first_seen DESC'
-          ).first
-
+          family = find_best_matching_family(
+            xml_family.css('name').text,
+            xml_family.css('time').text.to_i
+          )
           family = @version.families.new if family.nil?
           family.name       = xml_family.css('name').text
           family.alive      = false
+          family.akill      = xml_family.css('riptopic').text == '0'
           family.rip_topic  = xml_family.css('riptopic').text
-          family.death_date = Time.zone.at(xml_family.css('time').text.to_i)
+          family.death_date = if xml_family.css('time').text.to_i.zero?
+                                @loader.generated
+                              else
+                                Time.zone.at(xml_family.css('time').text.to_i)
+                              end
           family.save
           Rails.logger.debug "marked family #{family.name} as down"
         end
+      end
+
+      private
+
+      def find_best_matching_family(name, death_time)
+        fam = @version.families.where(
+          name: name
+        ).where(
+          # prevents a race condition when fam is renamed to a downed fam
+          '(ext_family_id NOT IN (?) OR ext_family_id IS NULL)', @alive_families
+        ).order(
+          'first_seen DESC'
+        )
+
+        # <time> = 0 for akilled families; match anyway
+        unless death_time.zero?
+          fam.where(
+            '(first_seen <= ? OR first_seen IS NULL)', Time.zone.at(death_time)
+          )
+        end
+        fam.first
       end
     end
   end

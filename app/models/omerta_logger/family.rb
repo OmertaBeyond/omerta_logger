@@ -23,6 +23,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  position      :integer
+#  akill         :boolean
 #
 
 module OmertaLogger
