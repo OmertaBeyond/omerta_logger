@@ -16,11 +16,11 @@ module OmertaLogger
     end
 
     def show
-      if params[:id_or_name].to_i.zero?
-        @user = with_default_includes(@version.users).find_by!(name: params[:id_or_name])
-      else
-        @user = with_default_includes(@version.users).find_by!(ext_user_id: params[:id_or_name])
-      end
+      @user = if params[:id_or_name].to_i.zero?
+                with_default_includes(@version.users).find_by!(name: params[:id_or_name])
+              else
+                with_default_includes(@version.users).find_by!(ext_user_id: params[:id_or_name])
+              end
     end
   end
 end

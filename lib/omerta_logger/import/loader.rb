@@ -21,11 +21,11 @@ module OmertaLogger
       def end_previous_versions
         @domain.versions.where(end: nil).each do |v|
           last_version_update = v.last_version_update
-          if last_version_update.nil?
-            v.end = DateTime.zone.now
-          else
-            v.end = last_version_update.generated
-          end
+          v.end = if last_version_update.nil?
+                    DateTime.zone.now
+                  else
+                    last_version_update.generated
+                  end
           v.save
           Rails.logger.info "ending version #{v.version} at #{v.end}"
         end

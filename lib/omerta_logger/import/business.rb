@@ -20,8 +20,8 @@ module OmertaLogger
           if Casino.casino_types.include? enumify(xml_business['type'])
             casino_is_business = true
             import_casino(xml_business, :business) if OmertaLogger.config.casino
-          else
-            import_business_object xml_business if OmertaLogger.config.business_object
+          elsif OmertaLogger.config.business_object
+            import_business_object xml_business
           end
         end
 

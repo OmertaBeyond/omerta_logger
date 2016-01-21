@@ -3,13 +3,12 @@ require 'time_difference'
 module OmertaLogger
   module Import
     class User < Base
-      # rubocop:disable Style/GuardClause
       def calculate_online_time_increment
         @online_time_increment = TimeDifference.between(
           @previous_version_update.generated,
           @version_update.generated
         ).in_seconds
-        @missed_cycles         = false
+        @missed_cycles = false
         if @online_time_increment >= 10 * 60
           # 10 minutes between updates probably means we missed a few cycles
           # let's take an educated guess of 5 minutes
@@ -21,7 +20,7 @@ module OmertaLogger
 
       def update_online_time(user)
         user.online_time_seconds += @online_time_increment
-        last_online_time         = user.last_user_online_time
+        last_online_time = user.last_user_online_time
         if last_online_time.nil? || last_online_time.end != @previous_version_update.generated || @missed_cycles
           user.user_online_times.create(start: @previous_version_update.generated, end: @version_update.generated)
         else

@@ -17,11 +17,11 @@ module OmertaLogger
     end
 
     def show
-      if params[:id_or_name].to_i.zero?
-        @family = with_default_includes(@version.families).find_by!(name: params[:id_or_name])
-      else
-        @family = with_default_includes(@version.families).find_by!(ext_family_id: params[:id_or_name])
-      end
+      @family = if params[:id_or_name].to_i.zero?
+                  with_default_includes(@version.families).find_by!(name: params[:id_or_name])
+                else
+                  with_default_includes(@version.families).find_by!(ext_family_id: params[:id_or_name])
+                end
     end
   end
 end

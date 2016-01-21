@@ -2,7 +2,7 @@ module OmertaLogger
   module Import
     class Family < Base
       XML_MAPPING = { name:  'name', worth: 'worth', rank: 'rank', user_count: 'users', hq: 'hq',
-                      color: 'color', bank: 'bank' }
+                      color: 'color', bank: 'bank' }.freeze
 
       def get_user(ext_user_id, name)
         @version.users.find_or_create_by(ext_user_id: ext_user_id, name: name)
