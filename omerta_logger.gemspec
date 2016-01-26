@@ -25,5 +25,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "bullet"
-  s.add_development_dependency "annotate", "~> 2.6.10"
+  s.add_development_dependency "annotate", "~> 2.7.0"
 end
