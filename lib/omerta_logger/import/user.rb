@@ -30,7 +30,7 @@ module OmertaLogger
       end
 
       def update_family(user, xml_family)
-        if xml_family.length > 0
+        if !xml_family.empty?
           user.family      = @version.families.find_by(name: xml_family.css('name').text, alive: true)
           user.family_role = enumify(xml_family.css('role').text.sub('None', 'Member'))
           Rails.logger.debug "user #{user.name}: set new family #{user.family.name}"
