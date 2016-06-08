@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.2.5"
-  s.add_dependency "nokogiri", "~> 1.6.7.1"
-  s.add_dependency "rabl", "~> 0.11.8"
+  s.add_dependency "rails", "~> 4.2.6"
+  s.add_dependency "nokogiri", "~> 1.6.8"
+  s.add_dependency "rabl", "~> 0.12.0"
   s.add_dependency "time_difference", "~> 0.4.2"
-  s.add_dependency "net-ftp-list", "~> 3.2.8"
+  s.add_dependency "net-ftp-list", "~> 3.2.9"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "bullet"
-  s.add_development_dependency "annotate", "~> 2.7.0"
+  s.add_development_dependency "annotate", "~> 2.7.1"
 end
