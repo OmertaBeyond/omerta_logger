@@ -26,7 +26,7 @@
 #
 
 module OmertaLogger
-  class GameStatistic < ActiveRecord::Base
+  class GameStatistic < ApplicationRecord
     belongs_to :version
   end
 end

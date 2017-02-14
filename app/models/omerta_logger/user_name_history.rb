@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class UserNameHistory < ActiveRecord::Base
+  class UserNameHistory < ApplicationRecord
     belongs_to :user
   end
 end

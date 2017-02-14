@@ -41,7 +41,7 @@ module OmertaLogger
 
       def import_tops
         @xml.css('families family').each do |xml_family|
-          family        = @version.families.find_by_ext_family_id(xml_family['id'])
+          family        = @version.families.find_by(ext_family_id: xml_family['id'])
           family.don    = get_user(xml_family.at_css('boss')['id'].to_i, xml_family.at_css('boss').text)
           family.sotto  = get_user(xml_family.at_css('sotto')['id'].to_i, xml_family.at_css('sotto').text)
           family.consig = get_user(xml_family.at_css('consig')['id'].to_i, xml_family.at_css('consig').text)

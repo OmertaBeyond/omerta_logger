@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class BusinessObjectProtectionHistory < ActiveRecord::Base
+  class BusinessObjectProtectionHistory < ApplicationRecord
     belongs_to :business_object
   end
 end

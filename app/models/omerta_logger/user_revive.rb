@@ -8,7 +8,7 @@
 #
 
 module OmertaLogger
-  class UserRevive < ActiveRecord::Base
+  class UserRevive < ApplicationRecord
     belongs_to :user
   end
 end

@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class BusinessObjectProfitHistory < ActiveRecord::Base
+  class BusinessObjectProfitHistory < ApplicationRecord
     belongs_to :business_object
   end
 end

@@ -15,7 +15,7 @@ module OmertaLogger
       attr_accessor :domain, :xml, :generated, :version, :version_update, :previous_version_update
 
       def initialize(domain)
-        @domain = Domain.find_by_name!(domain)
+        @domain = Domain.find_by!(name: domain)
       end
 
       def end_previous_versions

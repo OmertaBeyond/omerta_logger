@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class FamilyBankHistory < ActiveRecord::Base
+  class FamilyBankHistory < ApplicationRecord
     belongs_to :family
   end
 end

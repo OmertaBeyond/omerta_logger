@@ -16,7 +16,7 @@
 #
 
 module OmertaLogger
-  class Casino < ActiveRecord::Base
+  class Casino < ApplicationRecord
     belongs_to :version
     belongs_to :user
     belongs_to :family

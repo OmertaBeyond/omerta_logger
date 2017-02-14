@@ -27,7 +27,7 @@
 #
 
 module OmertaLogger
-  class Family < ActiveRecord::Base
+  class Family < ApplicationRecord
     has_many :users
     has_many :user_family_histories, dependent: :destroy
     has_many :family_name_histories, dependent: :destroy

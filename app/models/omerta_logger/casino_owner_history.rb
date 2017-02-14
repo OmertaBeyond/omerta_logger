@@ -10,7 +10,7 @@
 #
 
 module OmertaLogger
-  class CasinoOwnerHistory < ActiveRecord::Base
+  class CasinoOwnerHistory < ApplicationRecord
     belongs_to :user
     belongs_to :family
     belongs_to :casino

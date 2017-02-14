@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class UserOnlineTime < ActiveRecord::Base
+  class UserOnlineTime < ApplicationRecord
     belongs_to :user
   end
 end

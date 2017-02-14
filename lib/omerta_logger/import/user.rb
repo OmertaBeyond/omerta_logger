@@ -9,13 +9,12 @@ module OmertaLogger
           @version_update.generated
         ).in_seconds
         @missed_cycles = false
-        if @online_time_increment >= 10 * 60
-          # 10 minutes between updates probably means we missed a few cycles
-          # let's take an educated guess of 5 minutes
-          @online_time_increment = 5 * 60
-          @missed_cycles         = true
-          Rails.logger.warn "online_time_increment value of #{@online_time_increment}s indicating missed cycles"
-        end
+        return unless @online_time_increment >= 10 * 60
+        # 10 minutes between updates probably means we missed a few cycles
+        # let's take an educated guess of 5 minutes
+        @online_time_increment = 5 * 60
+        @missed_cycles         = true
+        Rails.logger.warn "online_time_increment value of #{@online_time_increment}s indicating missed cycles"
       end
 
       def update_online_time(user)

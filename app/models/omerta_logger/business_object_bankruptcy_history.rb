@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class BusinessObjectBankruptcyHistory < ActiveRecord::Base
+  class BusinessObjectBankruptcyHistory < ApplicationRecord
     belongs_to :business_object
   end
 end

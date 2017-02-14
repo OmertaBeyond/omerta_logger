@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219172546) do
+ActiveRecord::Schema.define(version: 20160121182710) do
 
   create_table "omerta_logger_bullet_factories", force: :cascade do |t|
     t.integer "ext_bullet_factory_id", limit: 2
@@ -21,69 +20,61 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.integer "city",                  limit: 1
     t.integer "price",                 limit: 2
     t.integer "bullets",               limit: 3
+    t.index ["family_id"], name: "index_omerta_logger_bullet_factories_on_family_id"
+    t.index ["user_id"], name: "index_omerta_logger_bullet_factories_on_user_id"
+    t.index ["version_id"], name: "index_omerta_logger_bullet_factories_on_version_id"
   end
-
-  add_index "omerta_logger_bullet_factories", ["family_id"], name: "index_omerta_logger_bullet_factories_on_family_id"
-  add_index "omerta_logger_bullet_factories", ["user_id"], name: "index_omerta_logger_bullet_factories_on_user_id"
-  add_index "omerta_logger_bullet_factories", ["version_id"], name: "index_omerta_logger_bullet_factories_on_version_id"
 
   create_table "omerta_logger_bullet_factory_bullet_histories", force: :cascade do |t|
     t.integer  "bullet_factory_id"
     t.datetime "date"
     t.integer  "bullets",           limit: 3
+    t.index ["bullet_factory_id"], name: "index_bullet_bullet_factory_id"
   end
-
-  add_index "omerta_logger_bullet_factory_bullet_histories", ["bullet_factory_id"], name: "index_bullet_bullet_factory_id"
 
   create_table "omerta_logger_bullet_factory_owner_histories", force: :cascade do |t|
     t.integer  "bullet_factory_id"
     t.datetime "date"
     t.integer  "user_id"
     t.integer  "family_id"
+    t.index ["bullet_factory_id"], name: "index_owner_bullet_factory_id"
   end
-
-  add_index "omerta_logger_bullet_factory_owner_histories", ["bullet_factory_id"], name: "index_owner_bullet_factory_id"
 
   create_table "omerta_logger_bullet_factory_price_histories", force: :cascade do |t|
     t.integer  "bullet_factory_id"
     t.datetime "date"
     t.integer  "price",             limit: 2
+    t.index ["bullet_factory_id"], name: "index_price_bullet_factory_id"
   end
-
-  add_index "omerta_logger_bullet_factory_price_histories", ["bullet_factory_id"], name: "index_price_bullet_factory_id"
 
   create_table "omerta_logger_business_object_bankruptcy_histories", force: :cascade do |t|
     t.integer  "business_object_id"
     t.datetime "date"
     t.boolean  "bankrupt"
+    t.index ["business_object_id"], name: "index_bankruptcy_business_object_id"
   end
-
-  add_index "omerta_logger_business_object_bankruptcy_histories", ["business_object_id"], name: "index_bankruptcy_business_object_id"
 
   create_table "omerta_logger_business_object_owner_histories", force: :cascade do |t|
     t.integer  "business_object_id"
     t.datetime "date"
     t.integer  "user_id"
     t.integer  "family_id"
+    t.index ["business_object_id"], name: "index_owner_business_object_id"
   end
-
-  add_index "omerta_logger_business_object_owner_histories", ["business_object_id"], name: "index_owner_business_object_id"
 
   create_table "omerta_logger_business_object_profit_histories", force: :cascade do |t|
     t.integer  "business_object_id"
     t.datetime "date"
     t.integer  "profit"
+    t.index ["business_object_id"], name: "index_profit_business_object_id"
   end
-
-  add_index "omerta_logger_business_object_profit_histories", ["business_object_id"], name: "index_profit_business_object_id"
 
   create_table "omerta_logger_business_object_protection_histories", force: :cascade do |t|
     t.integer  "business_object_id"
     t.datetime "date"
     t.integer  "protection",         limit: 1
+    t.index ["business_object_id"], name: "index_protection_business_object_id"
   end
-
-  add_index "omerta_logger_business_object_protection_histories", ["business_object_id"], name: "index_protection_business_object_id"
 
   create_table "omerta_logger_business_objects", force: :cascade do |t|
     t.integer "ext_object_id", limit: 2
@@ -95,52 +86,46 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.integer "profit"
     t.integer "protection",    limit: 1
     t.boolean "bankrupt"
+    t.index ["family_id"], name: "index_omerta_logger_business_objects_on_family_id"
+    t.index ["user_id"], name: "index_omerta_logger_business_objects_on_user_id"
+    t.index ["version_id"], name: "index_omerta_logger_business_objects_on_version_id"
   end
-
-  add_index "omerta_logger_business_objects", ["family_id"], name: "index_omerta_logger_business_objects_on_family_id"
-  add_index "omerta_logger_business_objects", ["user_id"], name: "index_omerta_logger_business_objects_on_user_id"
-  add_index "omerta_logger_business_objects", ["version_id"], name: "index_omerta_logger_business_objects_on_version_id"
 
   create_table "omerta_logger_casino_bankruptcy_histories", force: :cascade do |t|
     t.integer  "casino_id"
     t.datetime "date"
     t.boolean  "bankrupt"
+    t.index ["casino_id"], name: "index_bankruptcy_casino_id"
   end
-
-  add_index "omerta_logger_casino_bankruptcy_histories", ["casino_id"], name: "index_bankruptcy_casino_id"
 
   create_table "omerta_logger_casino_max_bet_histories", force: :cascade do |t|
     t.integer  "casino_id"
     t.datetime "date"
     t.integer  "max_bet"
+    t.index ["casino_id"], name: "index_max_bet_casino_id"
   end
-
-  add_index "omerta_logger_casino_max_bet_histories", ["casino_id"], name: "index_max_bet_casino_id"
 
   create_table "omerta_logger_casino_owner_histories", force: :cascade do |t|
     t.integer  "casino_id"
     t.datetime "date"
     t.integer  "user_id"
     t.integer  "family_id"
+    t.index ["casino_id"], name: "index_owner_casino_id"
   end
-
-  add_index "omerta_logger_casino_owner_histories", ["casino_id"], name: "index_owner_casino_id"
 
   create_table "omerta_logger_casino_profit_histories", force: :cascade do |t|
     t.integer  "casino_id"
     t.datetime "date"
     t.integer  "profit"
+    t.index ["casino_id"], name: "index_profit_casino_id"
   end
-
-  add_index "omerta_logger_casino_profit_histories", ["casino_id"], name: "index_profit_casino_id"
 
   create_table "omerta_logger_casino_protection_histories", force: :cascade do |t|
     t.integer  "casino_id"
     t.datetime "date"
     t.integer  "protection", limit: 1
+    t.index ["casino_id"], name: "index_protection_casino_id"
   end
-
-  add_index "omerta_logger_casino_protection_histories", ["casino_id"], name: "index_protection_casino_id"
 
   create_table "omerta_logger_casinos", force: :cascade do |t|
     t.integer "ext_casino_id", limit: 2
@@ -153,11 +138,10 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.integer "max_bet"
     t.integer "protection",    limit: 1
     t.boolean "bankrupt"
+    t.index ["family_id"], name: "index_omerta_logger_casinos_on_family_id"
+    t.index ["user_id"], name: "index_omerta_logger_casinos_on_user_id"
+    t.index ["version_id"], name: "index_omerta_logger_casinos_on_version_id"
   end
-
-  add_index "omerta_logger_casinos", ["family_id"], name: "index_omerta_logger_casinos_on_family_id"
-  add_index "omerta_logger_casinos", ["user_id"], name: "index_omerta_logger_casinos_on_user_id"
-  add_index "omerta_logger_casinos", ["version_id"], name: "index_omerta_logger_casinos_on_version_id"
 
   create_table "omerta_logger_domains", force: :cascade do |t|
     t.string   "name"
@@ -188,57 +172,51 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
+    t.boolean  "akill"
+    t.index ["version_id"], name: "index_omerta_logger_families_on_version_id"
   end
-
-  add_index "omerta_logger_families", ["version_id"], name: "index_omerta_logger_families_on_version_id"
 
   create_table "omerta_logger_family_bank_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "bank",      limit: 8
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_bank_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_bank_histories", ["family_id"], name: "index_omerta_logger_family_bank_histories_on_family_id"
 
   create_table "omerta_logger_family_name_histories", force: :cascade do |t|
     t.string   "name"
     t.datetime "date"
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_name_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_name_histories", ["family_id"], name: "index_omerta_logger_family_name_histories_on_family_id"
 
   create_table "omerta_logger_family_position_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "position"
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_position_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_position_histories", ["family_id"], name: "index_omerta_logger_family_position_histories_on_family_id"
 
   create_table "omerta_logger_family_rank_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "rank"
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_rank_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_rank_histories", ["family_id"], name: "index_omerta_logger_family_rank_histories_on_family_id"
 
   create_table "omerta_logger_family_user_count_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "user_count"
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_user_count_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_user_count_histories", ["family_id"], name: "index_omerta_logger_family_user_count_histories_on_family_id"
 
   create_table "omerta_logger_family_worth_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "worth"
     t.integer  "family_id"
+    t.index ["family_id"], name: "index_omerta_logger_family_worth_histories_on_family_id"
   end
-
-  add_index "omerta_logger_family_worth_histories", ["family_id"], name: "index_omerta_logger_family_worth_histories_on_family_id"
 
   create_table "omerta_logger_game_statistics", force: :cascade do |t|
     t.datetime "date"
@@ -261,9 +239,8 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.integer  "crime_attempts"
     t.integer  "bustouts"
     t.integer  "cars"
+    t.index ["version_id"], name: "index_omerta_logger_game_statistics_on_version_id"
   end
-
-  add_index "omerta_logger_game_statistics", ["version_id"], name: "index_omerta_logger_game_statistics_on_version_id"
 
   create_table "omerta_logger_hitlists", force: :cascade do |t|
     t.integer  "ext_hitlist_id"
@@ -279,41 +256,36 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.integer  "family_id"
     t.datetime "date"
     t.integer  "family_role"
+    t.index ["family_id"], name: "index_omerta_logger_user_family_histories_on_family_id"
+    t.index ["user_id"], name: "index_omerta_logger_user_family_histories_on_user_id"
   end
-
-  add_index "omerta_logger_user_family_histories", ["family_id"], name: "index_omerta_logger_user_family_histories_on_family_id"
-  add_index "omerta_logger_user_family_histories", ["user_id"], name: "index_omerta_logger_user_family_histories_on_user_id"
 
   create_table "omerta_logger_user_name_histories", force: :cascade do |t|
     t.string   "name"
     t.datetime "date"
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_omerta_logger_user_name_histories_on_user_id"
   end
-
-  add_index "omerta_logger_user_name_histories", ["user_id"], name: "index_omerta_logger_user_name_histories_on_user_id"
 
   create_table "omerta_logger_user_online_times", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "start"
     t.datetime "end"
+    t.index ["user_id"], name: "index_omerta_logger_user_online_times_on_user_id"
   end
-
-  add_index "omerta_logger_user_online_times", ["user_id"], name: "index_omerta_logger_user_online_times_on_user_id"
 
   create_table "omerta_logger_user_rank_histories", force: :cascade do |t|
     t.datetime "date"
     t.integer  "rank"
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_omerta_logger_user_rank_histories_on_user_id"
   end
-
-  add_index "omerta_logger_user_rank_histories", ["user_id"], name: "index_omerta_logger_user_rank_histories_on_user_id"
 
   create_table "omerta_logger_user_revives", force: :cascade do |t|
     t.datetime "date"
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_omerta_logger_user_revives_on_user_id"
   end
-
-  add_index "omerta_logger_user_revives", ["user_id"], name: "index_omerta_logger_user_revives_on_user_id"
 
   create_table "omerta_logger_users", force: :cascade do |t|
     t.integer  "ext_user_id"
@@ -337,18 +309,16 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "online_time_seconds", default: 0
+    t.index ["family_id"], name: "index_omerta_logger_users_on_family_id"
+    t.index ["version_id"], name: "index_omerta_logger_users_on_version_id"
   end
-
-  add_index "omerta_logger_users", ["family_id"], name: "index_omerta_logger_users_on_family_id"
-  add_index "omerta_logger_users", ["version_id"], name: "index_omerta_logger_users_on_version_id"
 
   create_table "omerta_logger_version_updates", force: :cascade do |t|
     t.integer  "version_id"
     t.datetime "generated"
     t.float    "duration"
+    t.index ["version_id"], name: "index_omerta_logger_version_updates_on_version_id"
   end
-
-  add_index "omerta_logger_version_updates", ["version_id"], name: "index_omerta_logger_version_updates_on_version_id"
 
   create_table "omerta_logger_versions", force: :cascade do |t|
     t.string   "version"
@@ -357,8 +327,7 @@ ActiveRecord::Schema.define(version: 20151219172546) do
     t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["domain_id"], name: "index_omerta_logger_versions_on_domain_id"
   end
-
-  add_index "omerta_logger_versions", ["domain_id"], name: "index_omerta_logger_versions_on_domain_id"
 
 end

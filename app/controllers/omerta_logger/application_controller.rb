@@ -5,7 +5,7 @@ module OmertaLogger
     end
 
     def set_version
-      @version = if params[:version_version].casecmp('latest') == 0
+      @version = if params[:version_version].casecmp('latest').zero?
                    @domain.versions.current
                  else
                    @domain.versions.find_by!(version: params[:version_version])

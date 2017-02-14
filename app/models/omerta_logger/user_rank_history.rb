@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class UserRankHistory < ActiveRecord::Base
+  class UserRankHistory < ApplicationRecord
     belongs_to :user
     enum rank: [ :empty_suit, :delivery_boy, :delivery_girl, :picciotto, :shoplifter,
                  :pickpocket, :thief, :associate, :mobster, :soldier, :swindler,

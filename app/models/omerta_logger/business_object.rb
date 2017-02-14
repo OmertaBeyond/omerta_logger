@@ -15,7 +15,7 @@
 #
 
 module OmertaLogger
-  class BusinessObject < ActiveRecord::Base
+  class BusinessObject < ApplicationRecord
     belongs_to :version
     belongs_to :user
     belongs_to :family

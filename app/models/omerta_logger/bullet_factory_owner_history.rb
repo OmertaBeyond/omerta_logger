@@ -10,7 +10,7 @@
 #
 
 module OmertaLogger
-  class BulletFactoryOwnerHistory < ActiveRecord::Base
+  class BulletFactoryOwnerHistory < ApplicationRecord
     belongs_to :user
     belongs_to :family
     belongs_to :bullet_factory

@@ -29,7 +29,7 @@
 require 'time_difference'
 
 module OmertaLogger
-  class User < ActiveRecord::Base
+  class User < ApplicationRecord
     include ActiveModel::Dirty
 
     before_save do |u|

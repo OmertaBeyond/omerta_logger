@@ -10,7 +10,7 @@
 #
 
 module OmertaLogger
-  class UserFamilyHistory < ActiveRecord::Base
+  class UserFamilyHistory < ApplicationRecord
     belongs_to :user
     belongs_to :family
     enum family_role: [ :member, :capo, :sotto, :consig, :don ]

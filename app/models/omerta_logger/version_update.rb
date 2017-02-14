@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class VersionUpdate < ActiveRecord::Base
+  class VersionUpdate < ApplicationRecord
     belongs_to :version
   end
 end

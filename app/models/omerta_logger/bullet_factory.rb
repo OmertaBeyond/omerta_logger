@@ -13,7 +13,7 @@
 #
 
 module OmertaLogger
-  class BulletFactory < ActiveRecord::Base
+  class BulletFactory < ApplicationRecord
     belongs_to :version
     belongs_to :user
     belongs_to :family

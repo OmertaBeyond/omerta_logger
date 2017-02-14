@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class FamilyWorthHistory < ActiveRecord::Base
+  class FamilyWorthHistory < ApplicationRecord
     belongs_to :family
   end
 end

@@ -4,7 +4,7 @@ module OmertaLogger
       def set_owner(xml_business, business)
         owner = xml_business.at_css('owner')
         owner_id = owner['id'].to_i
-        if owner_id == 0
+        if owner_id.zero?
           business.user = nil
           business.family = nil
         else

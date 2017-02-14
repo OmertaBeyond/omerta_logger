@@ -9,7 +9,7 @@
 #
 
 module OmertaLogger
-  class CasinoMaxBetHistory < ActiveRecord::Base
+  class CasinoMaxBetHistory < ApplicationRecord
     belongs_to :casino
   end
 end

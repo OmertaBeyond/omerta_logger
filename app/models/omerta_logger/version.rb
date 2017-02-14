@@ -12,7 +12,7 @@
 #
 
 module OmertaLogger
-  class Version < ActiveRecord::Base
+  class Version < ApplicationRecord
     has_many :users, dependent: :destroy
     has_many :families, dependent: :destroy
     has_many :version_updates, dependent: :destroy
