@@ -85,7 +85,7 @@ module OmertaLogger
 
         # <time> = 0 for akilled families; match anyway
         unless death_time.zero?
-          fam.where(
+          fam = fam.where(
             '(first_seen <= ? OR first_seen IS NULL)', Time.zone.at(death_time)
           )
         end
