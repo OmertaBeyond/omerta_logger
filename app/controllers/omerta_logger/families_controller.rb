@@ -18,7 +18,7 @@ module OmertaLogger
 
     def show
       @family = if params[:id_or_name].to_i.zero?
-                  with_default_includes(@version.families).find_by!(name: params[:id_or_name])
+                  with_default_includes(@version.families).order('first_seen DESC').find_by!(name: params[:id_or_name])
                 else
                   with_default_includes(@version.families).find_by!(ext_family_id: params[:id_or_name])
                 end
