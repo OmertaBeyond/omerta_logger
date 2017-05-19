@@ -1,4 +1,4 @@
-class CreateOmertaLoggerUsers < ActiveRecord::Migration
+class CreateOmertaLoggerUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_users do |t|
       t.integer :ext_user_id

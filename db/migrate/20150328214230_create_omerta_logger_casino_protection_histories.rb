@@ -1,4 +1,4 @@
-class CreateOmertaLoggerCasinoProtectionHistories < ActiveRecord::Migration
+class CreateOmertaLoggerCasinoProtectionHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_casino_protection_histories do |t|
       t.references :casino

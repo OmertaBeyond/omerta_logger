@@ -1,4 +1,4 @@
-class CreateOmertaLoggerFamilyNameHistories < ActiveRecord::Migration
+class CreateOmertaLoggerFamilyNameHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_family_name_histories do |t|
       t.string :name

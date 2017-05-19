@@ -1,4 +1,4 @@
-class CreateOmertaLoggerBusinessObjects < ActiveRecord::Migration
+class CreateOmertaLoggerBusinessObjects < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_business_objects do |t|
       t.integer :ext_object_id, :limit => 2

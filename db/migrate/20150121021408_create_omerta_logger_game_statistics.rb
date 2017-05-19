@@ -1,4 +1,4 @@
-class CreateOmertaLoggerGameStatistics < ActiveRecord::Migration
+class CreateOmertaLoggerGameStatistics < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_game_statistics do |t|
       t.datetime :date

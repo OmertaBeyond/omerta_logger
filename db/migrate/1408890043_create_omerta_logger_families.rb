@@ -1,4 +1,4 @@
-class CreateOmertaLoggerFamilies < ActiveRecord::Migration
+class CreateOmertaLoggerFamilies < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_families do |t|
       t.integer :ext_family_id

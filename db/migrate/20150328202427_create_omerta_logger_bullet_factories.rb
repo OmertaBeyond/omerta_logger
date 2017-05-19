@@ -1,4 +1,4 @@
-class CreateOmertaLoggerBulletFactories < ActiveRecord::Migration
+class CreateOmertaLoggerBulletFactories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_bullet_factories do |t|
       t.integer :ext_bullet_factory_id, :limit => 2

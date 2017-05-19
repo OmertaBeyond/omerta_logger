@@ -1,4 +1,4 @@
-class CreateOmertaLoggerHitlists < ActiveRecord::Migration
+class CreateOmertaLoggerHitlists < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_hitlists do |t|
       t.integer :ext_hitlist_id

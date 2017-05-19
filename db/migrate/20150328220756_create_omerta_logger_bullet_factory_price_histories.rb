@@ -1,4 +1,4 @@
-class CreateOmertaLoggerBulletFactoryPriceHistories < ActiveRecord::Migration
+class CreateOmertaLoggerBulletFactoryPriceHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_bullet_factory_price_histories do |t|
       t.references :bullet_factory

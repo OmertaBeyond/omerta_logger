@@ -1,4 +1,4 @@
-class CreateOmertaLoggerUserRankHistories < ActiveRecord::Migration
+class CreateOmertaLoggerUserRankHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_user_rank_histories do |t|
       t.datetime :date

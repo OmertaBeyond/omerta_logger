@@ -1,4 +1,4 @@
-class CreateOmertaLoggerDomains < ActiveRecord::Migration
+class CreateOmertaLoggerDomains < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_domains do |t|
       t.string :name

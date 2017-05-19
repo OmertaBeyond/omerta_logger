@@ -1,4 +1,4 @@
-class CreateOmertaLoggerBusinessObjectProtectionHistories < ActiveRecord::Migration
+class CreateOmertaLoggerBusinessObjectProtectionHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_business_object_protection_histories do |t|
       t.references :business_object

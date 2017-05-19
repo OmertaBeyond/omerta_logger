@@ -1,4 +1,4 @@
-class CreateOmertaLoggerVersionUpdates < ActiveRecord::Migration
+class CreateOmertaLoggerVersionUpdates < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_version_updates do |t|
       t.references :version, index: true

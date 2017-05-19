@@ -1,4 +1,4 @@
-class CreateOmertaLoggerFamilyWorthHistories < ActiveRecord::Migration
+class CreateOmertaLoggerFamilyWorthHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_family_worth_histories do |t|
       t.datetime :date

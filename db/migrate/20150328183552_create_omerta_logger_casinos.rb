@@ -1,4 +1,4 @@
-class CreateOmertaLoggerCasinos < ActiveRecord::Migration
+class CreateOmertaLoggerCasinos < ActiveRecord::Migration[4.2]
   def change
     create_table :omerta_logger_casinos do |t|
       t.integer :ext_casino_id, :limit => 2
