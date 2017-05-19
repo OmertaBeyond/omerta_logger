@@ -29,7 +29,7 @@ module OmertaLogger
 
     # @return [OmertaLogger::VersionUpdate]
     def last_version_update
-      version_updates.order('generated DESC').first
+      version_updates.order(generated: :desc).first
     end
   end
 end
