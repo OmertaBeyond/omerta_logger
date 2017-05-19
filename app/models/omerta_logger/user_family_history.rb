@@ -13,6 +13,6 @@ module OmertaLogger
   class UserFamilyHistory < ApplicationRecord
     belongs_to :user
     belongs_to :family
-    enum family_role: [ :member, :capo, :sotto, :consig, :don ]
+    enum family_role: %i[member capo sotto consig don]
   end
 end

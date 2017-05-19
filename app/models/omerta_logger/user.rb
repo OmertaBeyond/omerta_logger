@@ -54,13 +54,13 @@ module OmertaLogger
     has_many :bullet_factories
     belongs_to :family
     belongs_to :version
-    enum gender: [ :male, :female ]
-    enum rank: [ :empty_suit, :delivery_boy, :delivery_girl, :picciotto, :shoplifter,
-                 :pickpocket, :thief, :associate, :mobster, :soldier, :swindler,
-                 :assassin, :local_chief, :chief, :bruglione, :capodecina,
-                 :godfather, :first_lady ]
-    enum level: [ :player, :translation_crew, :user_group, :reporter ]
-    enum family_role: [ :member, :capo, :sotto, :consig, :don ]
+    enum gender: %i[male female]
+    enum rank: %i[empty_suit delivery_boy delivery_girl picciotto shoplifter
+                  pickpocket thief associate mobster soldier swindler
+                  assassin local_chief chief bruglione capodecina
+                  godfather first_lady]
+    enum level: %i[player translation_crew user_group reporter]
+    enum family_role: %i[member capo sotto consig don]
 
     def save_rank_history
       user_rank_histories.create(rank: rank, date: last_seen)
@@ -99,7 +99,7 @@ module OmertaLogger
     end
 
     def rank_short
-      rank_abbr = %w(ES DB DG PIC SHO PP TH ASO MOB SOL SWI ASA LC CHF BR CDC GF FL)
+      rank_abbr = %w[ES DB DG PIC SHO PP TH ASO MOB SOL SWI ASA LC CHF BR CDC GF FL]
       rank_abbr[User.ranks[rank]]
     end
   end

@@ -1,3 +1,3 @@
 collection @versions
 
-extends "omerta_logger/versions/show"
+extends 'omerta_logger/versions/show'

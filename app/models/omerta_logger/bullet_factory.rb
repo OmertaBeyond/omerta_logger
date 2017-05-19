@@ -21,8 +21,8 @@ module OmertaLogger
     has_many :bullet_factory_bullet_histories, dependent: :destroy
     has_many :bullet_factory_price_histories, dependent: :destroy
 
-    enum city: [ :detroit, :chicago, :new_york, :las_vegas,
-                 :philadelphia, :baltimore, :corleone, :palermo ]
+    enum city: %i[detroit chicago new_york las_vegas
+                  philadelphia baltimore corleone palermo]
 
     before_save do |bf|
       save_owner_history if OmertaLogger.config.bullet_factory_owner_history && (

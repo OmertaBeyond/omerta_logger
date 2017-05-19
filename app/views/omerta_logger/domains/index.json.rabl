@@ -1,3 +1,3 @@
 collection @domains
 
-extends "omerta_logger/domains/show"
+extends 'omerta_logger/domains/show'

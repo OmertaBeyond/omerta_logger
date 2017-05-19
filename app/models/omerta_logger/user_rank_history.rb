@@ -11,9 +11,9 @@
 module OmertaLogger
   class UserRankHistory < ApplicationRecord
     belongs_to :user
-    enum rank: [ :empty_suit, :delivery_boy, :delivery_girl, :picciotto, :shoplifter,
-                 :pickpocket, :thief, :associate, :mobster, :soldier, :swindler,
-                 :assassin, :local_chief, :chief, :bruglione, :capodecina,
-                 :godfather, :first_lady ]
+    enum rank: %i[empty_suit delivery_boy delivery_girl picciotto shoplifter
+                  pickpocket thief associate mobster soldier swindler
+                  assassin local_chief chief bruglione capodecina
+                  godfather first_lady]
   end
 end

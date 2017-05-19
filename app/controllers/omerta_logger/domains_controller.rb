@@ -5,8 +5,8 @@ module OmertaLogger
     def with_default_includes(finder)
       finder.includes(
         versions: [
-          families: [ :family_name_histories, :users ],
-          users: [ :family, :version, :user_name_histories, :user_rank_histories, :user_revives ]
+          families: %i[family_name_histories users],
+          users: %i[family version user_name_histories user_rank_histories user_revives]
         ]
       )
     end

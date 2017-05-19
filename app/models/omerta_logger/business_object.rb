@@ -24,10 +24,10 @@ module OmertaLogger
     has_many :business_object_protection_histories, dependent: :destroy
     has_many :business_object_bankruptcy_histories, dependent: :destroy
 
-    enum object_type: [ :booze_warehouse, :bank, :construction_company,
-                        :hospital, :narcotics_warehouse, :poker_basement, :travel_agency, :gambling_office ]
-    enum city: [ :detroit, :chicago, :new_york, :las_vegas,
-                 :philadelphia, :baltimore, :corleone, :palermo ]
+    enum object_type: %i[booze_warehouse bank construction_company
+                         hospital narcotics_warehouse poker_basement travel_agency gambling_office]
+    enum city: %i[detroit chicago new_york las_vegas
+                  philadelphia baltimore corleone palermo]
 
     before_save do |bo|
       save_owner_history if OmertaLogger.config.business_object_owner_history && (

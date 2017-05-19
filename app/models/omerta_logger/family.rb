@@ -44,8 +44,8 @@ module OmertaLogger
     belongs_to :consig, class_name: User
     belongs_to :version
 
-    enum city: [ :detroit, :chicago, :new_york, :las_vegas,
-                 :philadelphia, :baltimore, :corleone, :palermo ]
+    enum city: %i[detroit chicago new_york las_vegas
+                  philadelphia baltimore corleone palermo]
 
     before_save do |f|
       save_name_history if OmertaLogger.config.family_name_history && !f.new_record? && f.name_changed? &&

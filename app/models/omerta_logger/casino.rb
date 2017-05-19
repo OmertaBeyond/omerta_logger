@@ -26,10 +26,10 @@ module OmertaLogger
     has_many :casino_protection_histories, dependent: :destroy
     has_many :casino_bankruptcy_histories, dependent: :destroy
 
-    enum casino_type: [ :blackjack, :numbers_game, :punto_banco,
-                        :roulette, :slotmachine ]
-    enum city: [ :detroit, :chicago, :new_york, :las_vegas,
-                 :philadelphia, :baltimore, :corleone, :palermo ]
+    enum casino_type: %i[blackjack numbers_game punto_banco
+                         roulette slotmachine]
+    enum city: %i[detroit chicago new_york las_vegas
+                  philadelphia baltimore corleone palermo]
 
     before_save do |c|
       save_owner_history if OmertaLogger.config.casino_owner_history && (

@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Declare your gem's dependencies in omerta_logger.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
