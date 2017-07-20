@@ -4,7 +4,7 @@ module OmertaLogger
     include Sidekiq::Worker
     sidekiq_options queue: 'import', retry: false
 
-    def perform(*args)
+    def perform
       unless OmertaLogger.config.respond_to? :domains
         raise 'Please provide initializer file. See test/dummy/config/initializers/omerta_logger.rb.example'
       end
