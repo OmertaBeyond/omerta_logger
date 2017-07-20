@@ -22,6 +22,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'rabl', '~> 0.13.1'
   s.add_dependency 'time_difference', '~> 0.5.0'
   s.add_dependency 'net-ftp-list', '~> 3.2.10'
+  s.add_dependency 'sidekiq', '~> 5.0'
+  s.add_dependency 'sidekiq-scheduler', '~> 2.1'
+  s.add_dependency 'sidekiq-unique-jobs', '~> 5.0'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'bullet'

@@ -1,0 +1,9 @@
+:concurrency: 10
+:queues:
+ - import
+:verbose: true
+:schedule:
+  Import:
+    cron: '5 * * * * *'
+    class: OmertaLogger::ImportScheduler
+    queue: import
