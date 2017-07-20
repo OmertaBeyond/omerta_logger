@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'omerta_logger/version'
 require 'omerta_logger/import/base'
 require 'omerta_logger/import/family'
 require 'omerta_logger/import/user'
@@ -71,7 +72,14 @@ module OmertaLogger
       end
 
       def import_from_api
-        @xml = Nokogiri::XML(open(@domain.api_url)) do |config|
+        @xml = Nokogiri::XML(
+          open(
+            @domain.api_url,
+            'User-Agent' => 'Mozilla/5.0 (compatible; ' \
+                                  "omerta_logger/#{OmertaLogger::VERSION}; " \
+                                  '+https://github.com/Baelor/omerta_logger)'
+          )
+        ) do |config|
           config.strict.nonet
         end
         Rails.logger.debug "loaded XML from #{@domain.api_url}"
