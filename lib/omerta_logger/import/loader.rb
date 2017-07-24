@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'omerta_logger/version'
 require 'omerta_logger/import/base'
 require 'omerta_logger/import/family'
 require 'omerta_logger/import/user'
@@ -76,7 +75,7 @@ module OmertaLogger
           open(
             @domain.api_url,
             'User-Agent' => 'Mozilla/5.0 (compatible; ' \
-                                  "omerta_logger/#{OmertaLogger::VERSION}; " \
+                                  "omerta_logger/#{OmertaLogger::Version}; " \
                                   '+https://github.com/Baelor/omerta_logger)'
           )
         ) do |config|
