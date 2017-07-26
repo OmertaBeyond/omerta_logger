@@ -24,6 +24,10 @@ module OmertaLogger
         @ftp.list('*') do |e|
           entry = Net::FTP::List.parse(e)
           next unless entry.file?
+          if entry.filesize.zero?
+            Rails.logger.warn "Skipping zero-byte file #{path}/#{entry.basename}"
+            next
+          end
           files << entry.basename
         end
         files
