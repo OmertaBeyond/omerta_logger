@@ -7,12 +7,10 @@ module OmertaLogger
       end
 
       def set_hitlister(hitlist, xml_hitlist)
-        if xml_hitlist.at_css('by')['id'].to_i != 0
-          hitlist.hitlister = @version.users.find_or_create_by(ext_user_id: xml_hitlist.at_css('by')['id'].to_i,
+        hitlist.hitlister = if xml_hitlist.at_css('by')['id'].to_i != 0
+                              @version.users.find_or_create_by(ext_user_id: xml_hitlist.at_css('by')['id'].to_i,
                                                                name:        xml_hitlist.css('by').text)
-        else
-          hitlist.hitlister = nil
-        end
+                            end
       end
 
       def import

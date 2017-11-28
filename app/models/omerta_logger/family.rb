@@ -28,7 +28,7 @@
 
 module OmertaLogger
   class Family < ApplicationRecord
-    has_many :users
+    has_many :users, dependent: :nullify
     has_many :user_family_histories, dependent: :destroy
     has_many :family_name_histories, dependent: :destroy
     has_many :family_rank_histories, dependent: :destroy
@@ -36,9 +36,9 @@ module OmertaLogger
     has_many :family_user_count_histories, dependent: :destroy
     has_many :family_bank_histories, dependent: :destroy
     has_many :family_position_histories, dependent: :destroy
-    has_many :casinos
-    has_many :business_objects
-    has_many :bullet_factories
+    has_many :casinos, dependent: :nullify
+    has_many :business_objects, dependent: :nullify
+    has_many :bullet_factories, dependent: :nullify
     belongs_to :don, class_name: User
     belongs_to :sotto, class_name: User
     belongs_to :consig, class_name: User

@@ -36,7 +36,7 @@ module OmertaLogger
       def import
         uri = URI.parse(@domain.archive_url)
         files = ftp_file_list(uri.host, "#{uri.path}/#{@version.version}")
-        files.map! { |file| { basename: file, date: DateTime.strptime(file, '%Y-%m-%d--%H-%M-%S') } }
+        files.map! { |file| { basename: file, date: Time.strptime(file, '%Y-%m-%d--%H-%M-%S') } }
         files.select! { |file| @last_generated.nil? || file[:date] > @last_generated }
         import_files(files.sort_by { |file| file[:date] })
       end

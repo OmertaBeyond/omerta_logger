@@ -18,7 +18,7 @@ Style/Documentation:
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Exclude:
     - 'app/serializers/omerta_logger/user_serializer.rb'
     - 'lib/omerta_logger/import/game_statistic.rb'

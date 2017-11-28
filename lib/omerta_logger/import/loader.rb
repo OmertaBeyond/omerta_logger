@@ -22,7 +22,7 @@ module OmertaLogger
         @domain.versions.where(end: nil).each do |v|
           last_version_update = v.last_version_update
           v.end = if last_version_update.nil?
-                    DateTime.zone.now
+                    Time.zone.now
                   else
                     last_version_update.generated
                   end

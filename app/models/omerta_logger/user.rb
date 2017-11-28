@@ -47,11 +47,11 @@ module OmertaLogger
     has_many :user_online_times, dependent: :destroy
     has_many :user_name_histories, dependent: :destroy
     has_many :user_revives, dependent: :destroy
-    has_many :hitlistings, class_name: 'Hitlist', foreign_key: 'target_id'
-    has_many :added_hitlistings, class_name: 'Hitlist', foreign_key: 'hitlister_id'
-    has_many :casinos
-    has_many :business_objects
-    has_many :bullet_factories
+    has_many :hitlistings, class_name: 'Hitlist', foreign_key: 'target_id', dependent: :nullify
+    has_many :added_hitlistings, class_name: 'Hitlist', foreign_key: 'hitlister_id', dependent: :nullify
+    has_many :casinos, dependent: :nullify
+    has_many :business_objects, dependent: :nullify
+    has_many :bullet_factories, dependent: :nullify
     belongs_to :family
     belongs_to :version
     enum gender: %i[male female]
