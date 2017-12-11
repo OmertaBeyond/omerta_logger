@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121182710) do
+ActiveRecord::Schema.define(version: 20171211141314) do
 
   create_table "omerta_logger_bullet_factories", force: :cascade do |t|
     t.integer "ext_bullet_factory_id", limit: 2
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20160121182710) do
     t.integer "ext_hitlist_id"
     t.integer "version_id"
     t.datetime "date"
-    t.integer "amount"
+    t.integer "amount", limit: 8
     t.integer "target_id"
     t.integer "hitlister_id"
   end
