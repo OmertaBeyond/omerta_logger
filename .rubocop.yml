@@ -15,7 +15,5 @@ AllCops:
     - 'vendor/**/*'
 Metrics/AbcSize:
   Max: 40
-Layout/SpaceInsideBrackets:
-  Enabled: false # spaces make enums in models more readable
 Metrics/MethodLength:
   Max: 20

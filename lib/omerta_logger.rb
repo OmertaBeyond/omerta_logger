@@ -3,7 +3,7 @@ require 'omerta_logger/engine'
 module OmertaLogger
   # rubocop:disable Metrics/MethodLength
   def self.set_defaults
-    @config.domains = [ 'com' ]
+    @config.domains = ['com']
     @config.bullet_factory = true
     @config.bullet_factory_bullet_history = true
     @config.bullet_factory_owner_history = true
@@ -36,6 +36,7 @@ module OmertaLogger
     @config.user_revive = true
     @config.archive = true
   end
+  # rubocop:enable Metrics/MethodLength
 
   def self.setup(&block)
     @config ||= OmertaLogger::Engine::Configuration.new

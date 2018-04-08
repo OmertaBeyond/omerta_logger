@@ -29,6 +29,7 @@ module OmertaLogger
 
         import_bullet_factories if OmertaLogger.config.bullet_factory
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
       def import_casinos
         @xml.css('casinos casino').each do |xml_casino|

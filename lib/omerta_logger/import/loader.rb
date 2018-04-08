@@ -113,9 +113,7 @@ module OmertaLogger
 
         @previous_version_update = @version.last_version_update
 
-        if !@previous_version_update.nil? && @previous_version_update.generated == @generated && !Rails.env.development?
-          return
-        end
+        return if !@previous_version_update.nil? && @previous_version_update.generated == @generated && !Rails.env.development?
 
         # check archive for possible missed updates
         return if !skip_archive && scan_archive
@@ -125,6 +123,7 @@ module OmertaLogger
 
         exec_import
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
     end
   end
 end

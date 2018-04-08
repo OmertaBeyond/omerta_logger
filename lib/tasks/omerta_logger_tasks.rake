@@ -1,6 +1,6 @@
 namespace :version do
   desc 'delete a version'
-  task :delete, %i[domain version] => [ :environment ] do |_t, args|
+  task :delete, %i[domain version] => [:environment] do |_t, args|
     unless args.to_hash.key?(:domain) && args.to_hash.key?(:version)
       raise 'Please provide the domain and version you would like to delete'
     end
