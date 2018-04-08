@@ -21,12 +21,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.8'
   s.add_dependency 'rabl', '~> 0.13'
   s.add_dependency 'rails', '~> 5.1'
-  s.add_dependency 'sidekiq', '~> 5.0'
-  s.add_dependency 'sidekiq-scheduler', '~> 2.1'
+  s.add_dependency 'sidekiq', '~> 5.1'
+  s.add_dependency 'sidekiq-scheduler', '~> 2.2'
   s.add_dependency 'sidekiq-unique-jobs', '~> 5.0'
   s.add_dependency 'time_difference', '~> 0.7'
 
   s.add_development_dependency 'annotate', '~> 2.7'
-  s.add_development_dependency 'bullet'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'bullet', '~> 5.7'
+  s.add_development_dependency 'sqlite3', '~> 1.3'
 end
