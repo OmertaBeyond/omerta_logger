@@ -25,7 +25,7 @@ module OmertaLogger
           XML_MAPPING.each do |k, v|
             newfam[k] = xml_family.css(v).text
           end
-          family.update_attributes(newfam)
+          family.update(newfam)
           Rails.logger.debug "imported family #{family.name}"
         end
         set_position
