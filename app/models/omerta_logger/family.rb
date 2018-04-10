@@ -39,9 +39,9 @@ module OmertaLogger
     has_many :casinos, dependent: :nullify
     has_many :business_objects, dependent: :nullify
     has_many :bullet_factories, dependent: :nullify
-    belongs_to :don, class_name: User, inverse_of: false
-    belongs_to :sotto, class_name: User, inverse_of: false
-    belongs_to :consig, class_name: User, inverse_of: false
+    belongs_to :don, class_name: 'User', inverse_of: false
+    belongs_to :sotto, class_name: 'User', inverse_of: false
+    belongs_to :consig, class_name: 'User', inverse_of: false
     belongs_to :version
 
     enum city: %i[detroit chicago new_york las_vegas
