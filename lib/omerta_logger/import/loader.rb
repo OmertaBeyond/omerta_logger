@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'open-uri'
+require 'http'
 require 'omerta_logger/import/base'
 require 'omerta_logger/import/family'
 require 'omerta_logger/import/user'
@@ -72,12 +72,13 @@ module OmertaLogger
 
       def import_from_api
         @xml = Nokogiri::XML(
-          open(
-            @domain.api_url,
+          HTTP.timeout(write: 2, connect: 10, read: 10).headers(
             'User-Agent' => 'Mozilla/5.0 (compatible; ' \
-                                  "omerta_logger/#{OmertaLogger::Version}; " \
-                                  '+https://github.com/Baelor/omerta_logger)'
-          )
+                            "omerta_logger/#{OmertaLogger::Version}; " \
+                            '+https://github.com/Baelor/omerta_logger)',
+            'Accept' => 'text/xml',
+            'Accept-Encoding' => 'gzip'
+          ).use(:auto_inflate).get(@domain.api_url).to_s
         ) do |config|
           config.strict.nonet
         end

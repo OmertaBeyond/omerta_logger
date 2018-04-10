@@ -1,4 +1,4 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 
 # Maintain your gem's version:
 require 'omerta_logger/version'
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
   s.test_files = Dir['test/**/*']
 
+  s.add_dependency 'http', '~> 3.0'
   s.add_dependency 'net-ftp-list', '~> 3.2'
   s.add_dependency 'nokogiri', '~> 1.8'
   s.add_dependency 'rabl', '~> 0.13'
@@ -27,8 +28,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'time_difference', '~> 0.7'
 
   s.add_development_dependency 'annotate', '~> 2.7'
-  s.add_development_dependency 'bullet', '~> 5.7'
-  s.add_development_dependency 'sqlite3', '~> 1.3'
   s.add_development_dependency 'bootsnap', '~> 1.3'
+  s.add_development_dependency 'bullet', '~> 5.7'
   s.add_development_dependency 'listen', '~> 3.1'
+  s.add_development_dependency 'sqlite3', '~> 1.3'
 end
