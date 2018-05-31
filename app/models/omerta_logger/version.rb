@@ -24,7 +24,7 @@ module OmertaLogger
     belongs_to :domain
 
     def self.current
-      where('start <= ? AND (end >= ? OR end IS NULL)', Time.zone.now, Time.zone.now).first!
+      where('"start" <= ? AND ("end" >= ? OR "end" IS NULL)', Time.zone.now, Time.zone.now).first!
     end
 
     # @return [OmertaLogger::VersionUpdate]

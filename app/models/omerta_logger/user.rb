@@ -98,7 +98,7 @@ module OmertaLogger
 
     # @return [OmertaLogger::UserOnlineTime]
     def last_user_online_time
-      user_online_times.order('end DESC').first
+      user_online_times.order('"end" DESC').first
     end
 
     def rank_short
