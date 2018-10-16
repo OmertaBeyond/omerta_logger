@@ -3,7 +3,7 @@ require 'sidekiq-unique-jobs'
 module OmertaLogger
   class ImportWorker
     include Sidekiq::Worker
-    sidekiq_options queue: 'import', unique: :until_executed, retry: false,
+    sidekiq_options queue: 'import', unique: :until_executed, retry: 0,
                     unique_expiration: 1440 * 60, run_lock_expiration: 1440 * 60
 
     def perform(domain)
