@@ -122,7 +122,7 @@ GEM
     powerpack (0.1.2)
     public_suffix (3.0.3)
     raabro (1.1.6)
-    rabl (0.13.1)
+    rabl (0.14.0)
       activesupport (>= 2.3.14)
     rack (2.0.5)
     rack-protection (2.0.4)
