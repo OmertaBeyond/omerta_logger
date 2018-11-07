@@ -124,7 +124,7 @@ GEM
     raabro (1.1.6)
     rabl (0.14.0)
       activesupport (>= 2.3.14)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-protection (2.0.4)
       rack
     rack-test (1.1.0)
