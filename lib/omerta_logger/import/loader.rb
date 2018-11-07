@@ -72,7 +72,7 @@ module OmertaLogger
 
       def import_from_api
         @xml = Nokogiri::XML(
-          HTTP.timeout(write: 2, connect: 10, read: 10).headers(
+          HTTP.follow.timeout(write: 2, connect: 10, read: 10).headers(
             'User-Agent' => 'Mozilla/5.0 (compatible; ' \
                             "omerta_logger/#{OmertaLogger::Version}; " \
                             '+https://github.com/Baelor/omerta_logger)',
