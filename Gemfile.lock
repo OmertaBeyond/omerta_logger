@@ -160,7 +160,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.1.0)
-    rubocop (0.61.1)
+    rubocop (0.62.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -203,7 +203,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    unicode-display_width (1.4.0)
+    unicode-display_width (1.4.1)
     uniform_notifier (1.12.1)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
