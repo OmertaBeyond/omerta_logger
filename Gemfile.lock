@@ -115,7 +115,7 @@ GEM
     msgpack (1.2.6)
     net-ftp-list (3.2.11)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     parallel (1.12.1)
     parser (2.5.3.0)
