@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'annotate', '~> 2.7'
   s.add_development_dependency 'bootsnap', '~> 1.3'
-  s.add_development_dependency 'bullet', '~> 5.7'
+  s.add_development_dependency 'bullet', '~> 6.0'
   s.add_development_dependency 'listen', '~> 3.1'
   s.add_development_dependency 'sqlite3', '~> 1.3'
 end

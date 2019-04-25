@@ -67,7 +67,7 @@ GEM
     bootsnap (1.4.3)
       msgpack (~> 1.0)
     builder (3.2.3)
-    bullet (5.9.0)
+    bullet (6.0.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     concurrent-ruby (1.1.5)
@@ -216,7 +216,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.7)
   bootsnap (~> 1.3)
-  bullet (~> 5.7)
+  bullet (~> 6.0)
   listen (~> 3.1)
   omerta_logger!
   rubocop
