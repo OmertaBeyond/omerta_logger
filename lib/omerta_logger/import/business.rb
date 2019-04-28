@@ -71,7 +71,8 @@ module OmertaLogger
 
       def import_business_object(xml_business)
         business = @version.business_objects.find_or_create_by(ext_object_id: xml_business['id'])
-        business.object_type = enumify(xml_business['type'].sub(' (10%)', '').sub(' (5%)', ''))
+        # remove percentage part from object type (for Poker basement)
+        business.object_type = enumify(xml_business['type'].sub(/( \(\d+%\))/, ''))
         business.city = enumify(xml_business.css('city').text)
         set_owner(xml_business, business)
         business.protection = xml_business.css('protection').text
