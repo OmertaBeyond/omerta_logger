@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'http', '>= 3', '< 5'
   s.add_dependency 'net-ftp-list', '~> 3.2'
-  s.add_dependency 'nokogiri', '~> 1.8'
-  s.add_dependency 'rabl', '~> 0.13'
+  s.add_dependency 'nokogiri', '~> 1.10'
+  s.add_dependency 'rabl', '~> 0.14'
   s.add_dependency 'rails', '~> 5.2'
   s.add_dependency 'sidekiq', '~> 5.2'
   s.add_dependency 'sidekiq-scheduler', '>= 3', '< 4.0'

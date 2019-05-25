@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Declare your gem's dependencies in omerta_logger.gemspec.
@@ -15,4 +17,6 @@ gemspec
 
 group :development do
   gem 'rubocop', require: false
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
 end
