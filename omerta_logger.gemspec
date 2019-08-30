@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.10'
   s.add_dependency 'rabl', '~> 0.14'
   s.add_dependency 'rails', '~> 5.2'
-  s.add_dependency 'sidekiq', '~> 5.2'
+  s.add_dependency 'sidekiq', '>= 5.2', '< 7.0'
   s.add_dependency 'sidekiq-scheduler', '>= 3', '< 4.0'
   s.add_dependency 'sidekiq-unique-jobs', '>= 6', '< 7'
   s.add_dependency 'time_difference', '~> 0.7'
