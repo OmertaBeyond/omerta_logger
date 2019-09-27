@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'time_difference', '~> 0.7'
   s.add_dependency 'concurrent-ruby', '~> 1.1'
 
-  s.add_development_dependency 'annotate', '~> 2.7'
+  s.add_development_dependency 'annotate', '~> 3.0'
   s.add_development_dependency 'bootsnap', '~> 1.3'
   s.add_development_dependency 'bullet', '~> 6.0'
   s.add_development_dependency 'listen', '~> 3.1'
