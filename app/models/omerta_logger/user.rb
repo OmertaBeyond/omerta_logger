@@ -105,5 +105,29 @@ module OmertaLogger
       rank_abbr = %w[ES DB DG PIC SHO PP TH ASO MOB SOL SWI ASA LC CHF BR CDC GF FL]
       rank_abbr[User.ranks[rank]]
     end
+
+    def highrank_points
+      point_map = {
+          :empty_suit => 0,
+          :delivery_boy => 0,
+          :delivery_girl => 0,
+          :picciotto => 0,
+          :shoplifter => 0,
+          :pickpocket => 0,
+          :thief => 0,
+          :associate => 0,
+          :mobster => 0,
+          :soldier => 1,
+          :swindler => 2,
+          :assassin => 3,
+          :local_chief => 5,
+          :chief => 8,
+          :bruglione => 13,
+          :capodecina => 21,
+          :godfather => 34,
+          :first_lady => 34,
+      }
+      point_map[rank.to_sym]
+    end
   end
 end
