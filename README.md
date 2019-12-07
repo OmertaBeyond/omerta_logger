@@ -1,6 +1,6 @@
 # OmertaLogger
 [![Build Status](https://travis-ci.org/Baelor/omerta_logger.svg?branch=master)](https://travis-ci.org/Baelor/omerta_logger)
-[![Dependency Status](https://gemnasium.com/Baelor/omerta_logger.svg)](https://gemnasium.com/Baelor/omerta_logger)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Baelor/omerta_logger)](https://dependabot.com)
 [![Code Climate](https://codeclimate.com/github/Baelor/omerta_logger/badges/gpa.svg)](https://codeclimate.com/github/Baelor/omerta_logger)
 
 Provides a highly configurable logger for the MMORPG [Omerta](http://barafranca.com) as a mountable Rails engine.
