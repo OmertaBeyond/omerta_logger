@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 6.0'
   s.add_dependency 'sidekiq', '~> 6.0'
   s.add_dependency 'sidekiq-scheduler', '>= 3', '< 4.0'
-  s.add_dependency 'sidekiq-unique-jobs', '>= 6', '< 7'
+  s.add_dependency 'sidekiq-unique-jobs', '>= 6', '< 8'
   s.add_dependency 'time_difference', '~> 0.5'
   s.add_dependency 'concurrent-ruby', '~> 1.1'
 
